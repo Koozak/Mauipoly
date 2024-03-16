@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mauipoly", "Mauipoly\Mauipoly.csproj", "{DDAA22AC-4513-4D0D-B233-99497F21C5DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DDAA22AC-4513-4D0D-B233-99497F21C5DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAA22AC-4513-4D0D-B233-99497F21C5DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAA22AC-4513-4D0D-B233-99497F21C5DF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DDAA22AC-4513-4D0D-B233-99497F21C5DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAA22AC-4513-4D0D-B233-99497F21C5DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAA22AC-4513-4D0D-B233-99497F21C5DF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53F8CC24-7F38-437D-AD63-B28A91071DD3}
+	EndGlobalSection
+EndGlobal

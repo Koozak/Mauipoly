@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mauipoly.ChoosePage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Text="Who do you want to play with?"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="10" 
+               FontSize="30"
+               FontAttributes="Bold"/>
+        <StackLayout Grid.Row="1">
+
+            <Button x:Name="btnPlayWithPlayer"
+                Text="Play with player"
+                Clicked="btnPlayWithPlayer_Clicked"
+                Margin="10"
+                MaximumWidthRequest="450"/>
+            <Button x:Name="btnPlayWithBot"
+                Text="Play with bot"
+                Clicked="btnPlayWithBot_Clicked"
+                Margin="10" 
+                MaximumWidthRequest="450"/>
+        </StackLayout>
+    </Grid>
+</ContentPage>
