@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mauipoly.HomePage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Text="Mauipoly"
+               VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="10" 
+               FontSize="60"
+               FontAttributes="Bold"/>
+        <StackLayout Grid.Row="1">
+
+            <Button x:Name="btnPlay"
+                Text="Play"
+                Clicked="btnPlay_Clicked"
+                Margin="10"
+                MaximumWidthRequest="450"/>            
+            <Button x:Name="btnExit"
+                Text="Exit"
+                Clicked="btnExit_Clicked"
+                Margin="10" 
+                MaximumWidthRequest="450"/>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>
