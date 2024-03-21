@@ -8,17 +8,19 @@ namespace Mauipoly
 {
     class Player
     { 
-        public int id;
         public string Nickname;
         public int Money;
-        public bool Turn;
+        public bool isTurn;
+        public string Location;
+        public string Image;
 
-        public Player(int id, string nickname, bool turn)
+        public Player(string nickname, bool turn, string image)
         {
-            this.id = id;
             Nickname = nickname;
             Money = 2000;
-            Turn = turn;
+            isTurn = turn;
+            Location = "6:0";
+            Image = image;
         }
     }
 

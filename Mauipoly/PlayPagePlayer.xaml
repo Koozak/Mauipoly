@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mauipoly.PlayPage">
+             x:Class="Mauipoly.PlayPagePlayer">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -60,7 +60,19 @@
 
         </Grid>
         <Label x:Name="LabeLWithPlayerName" Grid.Column="1" Grid.Row="0" FontSize="30" HorizontalTextAlignment="Center"></Label>
-        <!--DO Image of player-->
-        <Button Grid.Row="2" Grid.Column="1" Text="Throw dice" Margin="10" MaximumWidthRequest="350" MaximumHeightRequest="50"></Button>
+        <Grid  Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="PlayerImage" Source="dotnet_bot.png" Grid.Column="1"/>
+            <StackLayout Grid.Column="0">
+                <Label x:Name="PlayerValues"></Label>
+            </StackLayout>
+        </Grid>
+        <Button x:Name="ThrowBtn" Grid.Row="2" Grid.Column="1" Text="Throw dice" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Throw_Clicked"></Button>
     </Grid>
 </ContentPage>
