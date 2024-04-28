@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Mauipoly
+﻿namespace Mauipoly
 {
     class Player
     { 
@@ -13,6 +7,7 @@ namespace Mauipoly
         public bool isTurn;
         public string Location;
         public string Image;
+        public BoardField[] BoardFieldList;
 
         public Player(string nickname, bool turn, string image)
         {
@@ -21,6 +16,7 @@ namespace Mauipoly
             isTurn = turn;
             Location = "6:0";
             Image = image;
+            BoardFieldList = new BoardField[24];
         }
     }
 
