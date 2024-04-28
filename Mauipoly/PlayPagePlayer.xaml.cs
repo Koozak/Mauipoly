@@ -15,36 +15,34 @@ public partial class PlayPagePlayer : ContentPage
     Player player2 = new Player("Fast_Romek", false, "player2img.png");
 
     public PlayPagePlayer()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         Whose_Turn(player1, player2);
         SetFields();
 
     }
 
 
-    private void Whose_Turn(Player one,Player two)
+    private void Whose_Turn(Player one, Player two)
     {
         int value = rnd.Next(1, 3);
         if (value == 1)
         {
             one.isTurn = true;
             ShowingStats(one);
-            field1.Source = player1.Image;
         }
         else
         {
             two.isTurn = true;
             ShowingStats(two);
-            field1.Source= player2.Image;
         }
     }
 
     private async void Btn_Throw_Clicked(object sender, EventArgs e)
     {
-        if(player1.isTurn == true)
+        if (player1.isTurn == true)
         {
-            int value = rnd1.Next(1, 5)+rnd2.Next(1,5);
+            int value = rnd1.Next(1, 5) + rnd2.Next(1, 5);
             ThrowBtn.Opacity = 0.5;
             ThrowBtn.IsEnabled = false;
             Moving(value);
@@ -52,7 +50,7 @@ public partial class PlayPagePlayer : ContentPage
             ThrowBtn.IsEnabled = true;
             player1.isTurn = false;
             player2.isTurn = true;
-            test(fields,player1,xdplayer1);
+            test(fields, player1, xdplayer1);
             ShowingStats(player1);
 
         }
@@ -66,9 +64,9 @@ public partial class PlayPagePlayer : ContentPage
             ThrowBtn.IsEnabled = true;
             player2.isTurn = false;
             player1.isTurn = true;
-            test(fields, player2,xdplayer2);
+            test(fields, player2, xdplayer2);
             ShowingStats(player2);
-            
+
         }
     }
     private async void test(BoardField[] field, Player player, int id)
@@ -92,17 +90,6 @@ public partial class PlayPagePlayer : ContentPage
                     {
                         player.Money = player.Money - field[id].HowMuchForField;
                         ShowingStats(player);
-                        int help = 0;
-                        if (player.BoardFieldList[help] == field[id])
-                        {
-                            player.BoardFieldList[help] = field[id];
-                            
-                        }
-                        else
-                        {
-                            help++;
-                            player.BoardFieldList[help] = field[id];
-                        }
                     }
                 }
             }
@@ -128,170 +115,721 @@ public partial class PlayPagePlayer : ContentPage
     {
         if (player1.isTurn == true)
         {
+            switch (fields[xdplayer1].Name)
+            {
+                case "field1":
+                    if (field1.Source!=null && field1.Source.ToString() == "player1andplayer2img.png")
+                    {
+                        field1.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field1.Source = null;
+                    }
+                    break;
 
+                case "field2":
+                    if (field2.Source.ToString() == "player1andplayer2img.png")
+                    {
+                        field2.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field2.Source = null;
+                    }
+                    break;
+
+                case "field3":
+                    if (field3.ToString() == "player1andplayer2img.png")
+                    {
+                        field3.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field3.Source = null;
+                    }
+                    break;
+                case "field4":
+                    if (field4.ToString() == "player1andplayer2img.png")
+                    {
+                        field4.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field4.Source = null;
+                    }
+                    break;
+                case "field5":
+                    if (field5.ToString() == "player1andplayer2img.png")
+                    {
+                        field5.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field5.Source = null;
+                    }
+                    break;
+                case "field6":
+                    if (field6.ToString() == "player1andplayer2img.png")
+                    {
+                        field6.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field6.Source = null;
+                    }
+                    break;
+                case "field7":
+                    if (field7.ToString() == "player1andplayer2img.png")
+                    {
+                        field7.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field7.Source = null;
+                    }
+                    break;
+                case "field8":
+                    if (field8.ToString() == "player1andplayer2img.png")
+                    {
+                        field8.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field8.Source = null;
+                    }
+                    break;
+                case "field9":
+                    if (field9.ToString() == "player1andplayer2img.png")
+                    {
+                        field9.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field9.Source = null;
+                    }
+                    break;
+                case "field10":
+                    if (field10.ToString() == "player1andplayer2img.png")
+                    {
+                        field10.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field10.Source = null;
+                    }
+                    break;
+                case "field11":
+                    if (field11.ToString() == "player1andplayer2img.png")
+                    {
+                        field11.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field11.Source = null;
+                    }
+                    break;
+                case "field12":
+                    if (field12.ToString() == "player1andplayer2img.png")
+                    {
+                        field12.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field12.Source = null;
+                    }
+                    break;
+                case "field13":
+                    if (field13.ToString() == "player1andplayer2img.png")
+                    {
+                        field13.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field13.Source = null;
+                    }
+                    break;
+                case "field14":
+                    if (field14.ToString() == "player1andplayer2img.png")
+                    {
+                        field14.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field14.Source = null;
+                    }
+                    break;
+                case "field15":
+                    if (field15.ToString() == "player1andplayer2img.png")
+                    {
+                        field15.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field15.Source = null;
+                    }
+                    break;
+                case "field16":
+                    if (field16.ToString() == "player1andplayer2img.png")
+                    {
+                        field16.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field16.Source = null;
+                    }
+                    break;
+                case "field17":
+                    if (field17.ToString() == "player1andplayer2img.png")
+                    {
+                        field17.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field17.Source = null;
+                    }
+                    break;
+                case "field18":
+                    if (field18.ToString() == "player1andplayer2img.png")
+                    {
+                        field18.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field18.Source = null;
+                    }
+                    break;
+                case "field19":
+                    if (field19.ToString() == "player1andplayer2img.png")
+                    {
+                        field19.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field19.Source = null;
+                    }
+                    break;
+                case "field20":
+                    if (field20.ToString() == "player1andplayer2img.png")
+                    {
+                        field20.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field20.Source = null;
+                    }
+                    break;
+                case "field21":
+                    if (field21.ToString() == "player1andplayer2img.png")
+                    {
+                        field21.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field21.Source = null;
+                    }
+                    break;
+                case "field22":
+                    if (field22.ToString() == "player1andplayer2img.png")
+                    {
+                        field22.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field22.Source = null;
+                    }
+                    break;
+                case "field23":
+                    if (field23.ToString() == "player1andplayer2img.png")
+                    {
+                        field23.Source = player2.Image;
+                    }
+                    else
+                    {
+                        field23.Source = null;
+                    }
+                    break;
+            }
             xdplayer1 = xdplayer1 + r;
             if (xdplayer1 >= 23)
             {
-                int help1 = 23 - xdplayer1;
+                int help1 = xdplayer1 - 23;
                 xdplayer1 = 0 + help1;
                 player1.Money = player1.Money + 200;
-                xdplayer1 = xdplayer1 + r;
-                switch (fields[xdplayer1].Name)
-                {
-                    case "field1":
-                        field1.Source = player1.Image;
-                        break;
-
-                    case "field2":
-                        field2.Source = player1.Image;
-                        break;
-
-                    case "field3":
-                        field3.Source = player1.Image;
-                        break;
-                    case "field4":
-                        field4.Source = player1.Image;
-                        break;
-                    case "field5":
-                        field5.Source = player1.Image;
-                        break;
-                    case "field6":
-                        field6.Source = player1.Image;
-                        break;
-                    case "field7":
-                        field7.Source = player1.Image;
-                        break;
-                    case "field8":
-                        field8.Source = player1.Image;
-                        break;
-                    case "field9":
-                        field9.Source = player1.Image;
-                        break;
-                    case "field10":
-                        field10.Source = player1.Image;
-                        break;
-                    case "field11":
-                        field11.Source = player1.Image;
-                        break;
-                    case "field12":
-                        field12.Source = player1.Image;
-                        break;
-                    case "field13":
-                        field13.Source = player1.Image;
-                        break;
-                    case "field14":
-                        field14.Source = player1.Image;
-                        break;
-                    case "field15":
-                        field15.Source = player1.Image;
-                        break;
-                    case "field16":
-                        field16.Source = player1.Image;
-                        break;
-                    case "field17":
-                        field17.Source = player1.Image;
-                        break;
-                    case "field18":
-                        field18.Source = player1.Image;
-                        break;
-                    case "field19":
-                        field19.Source = player1.Image;
-                        break;
-                    case "field20":
-                        field20.Source = player1.Image;
-                        break;
-                    case "field21":
-                        field21.Source = player1.Image;
-                        break;
-                    case "field22":
-                        field22.Source = player1.Image;
-                        break;
-                    case "field23":
-                        field23.Source = player1.Image;
-                        break;
-                }
             }
-            else
+            switch (fields[xdplayer1].Name)
             {
-
-                switch (fields[xdplayer1].Name)
-                {
-                    case "field1":
+                case "field1":
+                    if (field1.Source == null)
+                    {
                         field1.Source = player1.Image;
-                        break;
+                    }
+                    else if (field1.Source != null)
+                    {
+                        field1.Source = "player1andplayer2img.png";
+                    }
+                    break;
 
-                    case "field2":
+                case "field2":
+                    if (field2.Source == null)
+                    {
                         field2.Source = player1.Image;
-                        break;
+                    }
+                    else if (field2.Source != null)
+                    {
+                        field2.Source = "player1andplayer2img.png";
+                    }
+                    break;
 
-                    case "field3":
+                case "field3":
+                    if (field3.Source == null)
+                    {
                         field3.Source = player1.Image;
-                        break;
-                    case "field4":
+                    }
+                    else if (field3.Source != null)
+                    {
+                        field3.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field4":
+                    if (field4.Source == null)
+                    {
                         field4.Source = player1.Image;
-                        break;
-                    case "field5":
+                    }
+                    else if (field4.Source != null)
+                    {
+                        field4.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field5":
+                    if (field5.Source == null)
+                    {
                         field5.Source = player1.Image;
-                        break;
-                    case "field6":
+                    }
+                    else if (field5.Source != null)
+                    {
+                        field5.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field6":
+                    if (field6.Source == null)
+                    {
                         field6.Source = player1.Image;
-                        break;
-                    case "field7":
+                    }
+                    else if (field6.Source != null)
+                    {
+                        field6.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field7":
+                    if (field7.Source == null)
+                    {
                         field7.Source = player1.Image;
-                        break;
-                    case "field8":
+                    }
+                    else if (field7.Source != null)
+                    {
+                        field7.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field8":
+                    if (field8.Source == null)
+                    {
                         field8.Source = player1.Image;
-                        break;
-                    case "field9":
+                    }
+                    else if (field8.Source != null)
+                    {
+                        field8.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field9":
+                    if (field9.Source == null)
+                    {
                         field9.Source = player1.Image;
-                        break;
-                    case "field10":
+                    }
+                    else if (field9.Source != null)
+                    {
+                        field9.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field10":
+                    if (field10.Source == null)
+                    {
                         field10.Source = player1.Image;
-                        break;
-                    case "field11":
+                    }
+                    else if (field10.Source != null)
+                    {
+                        field10.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field11":
+                    if (field11.Source == null)
+                    {
                         field11.Source = player1.Image;
-                        break;
-                    case "field12":
+                    }
+                    else if (field11.Source != null)
+                    {
+                        field11.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field12":
+                    if (field12.Source == null)
+                    {
                         field12.Source = player1.Image;
-                        break;
-                    case "field13":
+                    }
+                    else if (field12.Source != null)
+                    {
+                        field12.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field13":
+                    if (field13.Source == null)
+                    {
                         field13.Source = player1.Image;
-                        break;
-                    case "field14":
+                    }
+                    else if (field13.Source != null)
+                    {
+                        field13.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field14":
+                    if (field14.Source == null)
+                    {
                         field14.Source = player1.Image;
-                        break;
-                    case "field15":
+                    }
+                    else if (field14.Source != null)
+                    {
+                        field14.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field15":
+                    if (field15.Source == null)
+                    {
                         field15.Source = player1.Image;
-                        break;
-                    case "field16":
+                    }
+                    else if (field15.Source != null)
+                    {
+                        field15.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field16":
+                    if (field16.Source == null)
+                    {
                         field16.Source = player1.Image;
-                        break;
-                    case "field17":
+                    }
+                    else if (field16.Source != null)
+                    {
+                        field16.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field17":
+                    if (field17.Source == null)
+                    {
                         field17.Source = player1.Image;
-                        break;
-                    case "field18":
+                    }
+                    else if (field17.Source != null)
+                    {
+                        field17.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field18":
+                    if (field18.Source == null)
+                    {
                         field18.Source = player1.Image;
-                        break;
-                    case "field19":
+                    }
+                    else if (field18.Source != null)
+                    {
+                        field18.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field19":
+                    if (field19.Source == null)
+                    {
                         field19.Source = player1.Image;
-                        break;
-                    case "field20":
+                    }
+                    else if (field19.Source != null)
+                    {
+                        field19.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field20":
+                    if (field20.Source == null)
+                    {
                         field20.Source = player1.Image;
-                        break;
-                    case "field21":
+                    }
+                    else if (field20.Source != null)
+                    {
+                        field20.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field21":
+                    if (field21.Source == null)
+                    {
                         field21.Source = player1.Image;
-                        break;
-                    case "field22":
+                    }
+                    else if (field21.Source != null)
+                    {
+                        field21.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field22":
+                    if (field22.Source == null)
+                    {
                         field22.Source = player1.Image;
-                        break;
-                    case "field23":
+                    }
+                    else if (field22.Source != null)
+                    {
+                        field22.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field23":
+                    if (field23.Source == null)
+                    {
                         field23.Source = player1.Image;
-                        break;
-                }
+                    }
+                    else if (field23.Source != null)
+                    {
+                        field23.Source = "player1andplayer2img.png";
+                    }
+                    break;
             }
         }
         else
         {
+            switch (fields[xdplayer2].Name)
+            {
+                case "field1":
+                    if (field1.Source!=null && field1.Source.ToString() == "player1andplayer2img.png")
+                    {
+                        field1.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field1.Source = null;
+                    }
+                    break;
+
+                case "field2":
+                    if (field2.Source.ToString() == "player1andplayer2img.png")
+                    {
+                        field2.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field2.Source = null;
+                    }
+                    break;
+
+                case "field3":
+                    if (field3.ToString() == "player1andplayer2img.png")
+                    {
+                        field3.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field3.Source = null;
+                    }
+                    break;
+                case "field4":
+                    if (field4.ToString() == "player1andplayer2img.png")
+                    {
+                        field4.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field4.Source = null;
+                    }
+                    break;
+                case "field5":
+                    if (field5.ToString() == "player1andplayer2img.png")
+                    {
+                        field5.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field5.Source = null;
+                    }
+                    break;
+                case "field6":
+                    if (field6.ToString() == "player1andplayer2img.png")
+                    {
+                        field6.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field6.Source = null;
+                    }
+                    break;
+                case "field7":
+                    if (field7.ToString() == "player1andplayer2img.png")
+                    {
+                        field7.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field7.Source = null;
+                    }
+                    break;
+                case "field8":
+                    if (field8.ToString() == "player1andplayer2img.png")
+                    {
+                        field8.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field8.Source = null;
+                    }
+                    break;
+                case "field9":
+                    if (field9.ToString() == "player1andplayer2img.png")
+                    {
+                        field9.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field9.Source = null;
+                    }
+                    break;
+                case "field10":
+                    if (field10.ToString() == "player1andplayer2img.png")
+                    {
+                        field10.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field10.Source = null;
+                    }
+                    break;
+                case "field11":
+                    if (field11.ToString() == "player1andplayer2img.png")
+                    {
+                        field11.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field11.Source = null;
+                    }
+                    break;
+                case "field12":
+                    if (field12.ToString() == "player1andplayer2img.png")
+                    {
+                        field12.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field12.Source = null;
+                    }
+                    break;
+                case "field13":
+                    if (field13.ToString() == "player1andplayer2img.png")
+                    {
+                        field13.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field13.Source = null;
+                    }
+                    break;
+                case "field14":
+                    if (field14.ToString() == "player1andplayer2img.png")
+                    {
+                        field14.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field14.Source = null;
+                    }
+                    break;
+                case "field15":
+                    if (field15.ToString() == "player1andplayer2img.png")
+                    {
+                        field15.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field15.Source = null;
+                    }
+                    break;
+                case "field16":
+                    if (field16.ToString() == "player1andplayer2img.png")
+                    {
+                        field16.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field16.Source = null;
+                    }
+                    break;
+                case "field17":
+                    if (field17.ToString() == "player1andplayer2img.png")
+                    {
+                        field17.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field17.Source = null;
+                    }
+                    break;
+                case "field18":
+                    if (field18.ToString() == "player1andplayer2img.png")
+                    {
+                        field18.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field18.Source = null;
+                    }
+                    break;
+                case "field19":
+                    if (field19.ToString() == "player1andplayer2img.png")
+                    {
+                        field19.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field19.Source = null;
+                    }
+                    break;
+                case "field20":
+                    if (field20.ToString() == "player1andplayer2img.png")
+                    {
+                        field20.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field20.Source = null;
+                    }
+                    break;
+                case "field21":
+                    if (field21.ToString() == "player1andplayer2img.png")
+                    {
+                        field21.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field21.Source = null;
+                    }
+                    break;
+                case "field22":
+                    if (field22.ToString() == "player1andplayer2img.png")
+                    {
+                        field22.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field22.Source = null;
+                    }
+                    break;
+                case "field23":
+                    if (field23.ToString() == "player1andplayer2img.png")
+                    {
+                        field23.Source = player1.Image;
+                    }
+                    else
+                    {
+                        field23.Source = null;
+                    }
+                    break;
+            }
             xdplayer2 = xdplayer2 + r;
             if (xdplayer2 >= 23)
             {
@@ -299,158 +837,241 @@ public partial class PlayPagePlayer : ContentPage
                 xdplayer2 = 0 + help1;
                 player2.Money = player2.Money + 200;
                 xdplayer2 = xdplayer2 + r;
-                switch (fields[xdplayer2].Name)
-                {
-                    case "field1":
-                        field1.Source = player2.Image;
-                        break;
-
-                    case "field2":
-                        field2.Source = player2.Image;
-                        break;
-
-                    case "field3":
-                        field3.Source = player2.Image;
-                        break;
-                    case "field4":
-                        field4.Source = player2.Image;
-                        break;
-                    case "field5":
-                        field5.Source = player2.Image;
-                        break;
-                    case "field6":
-                        field6.Source = player2.Image;
-                        break;
-                    case "field7":
-                        field7.Source = player2.Image;
-                        break;
-                    case "field8":
-                        field8.Source = player2.Image;
-                        break;
-                    case "field9":
-                        field9.Source = player2.Image;
-                        break;
-                    case "field10":
-                        field10.Source = player2.Image;
-                        break;
-                    case "field11":
-                        field11.Source = player2.Image;
-                        break;
-                    case "field12":
-                        field12.Source = player2.Image;
-                        break;
-                    case "field13":
-                        field13.Source = player2.Image;
-                        break;
-                    case "field14":
-                        field14.Source = player2.Image;
-                        break;
-                    case "field15":
-                        field15.Source = player2.Image;
-                        break;
-                    case "field16":
-                        field16.Source = player2.Image;
-                        break;
-                    case "field17":
-                        field17.Source = player2.Image;
-                        break;
-                    case "field18":
-                        field18.Source = player2.Image;
-                        break;
-                    case "field19":
-                        field19.Source = player2.Image;
-                        break;
-                    case "field20":
-                        field20.Source = player2.Image;
-                        break;
-                    case "field21":
-                        field21.Source = player2.Image;
-                        break;
-                    case "field22":
-                        field22.Source = player2.Image;
-                        break;
-                    case "field23":
-                        field23.Source = player2.Image;
-                        break;
-                }
             }
-            else
+            switch (fields[xdplayer2].Name)
             {
-
-                switch (fields[xdplayer2].Name)
-                {
-                    case "field1":
+                case "field1":
+                    if (field1.Source == null)
+                    {
                         field1.Source = player2.Image;
-                        break;
+                    }
+                    else if (field1.Source != null)
+                    {
+                        field1.Source = "player1andplayer2img.png";
+                    }
+                    break;
 
-                    case "field2":
+                case "field2":
+                    if (field2.Source == null)
+                    {
                         field2.Source = player2.Image;
-                        break;
+                    }
+                    else if (field2.Source != null)
+                    {
+                        field2.Source = "player1andplayer2img.png";
+                    }
+                    break;
 
-                    case "field3":
+                case "field3":
+                    if (field3.Source == null)
+                    {
                         field3.Source = player2.Image;
-                        break;
-                    case "field4":
+                    }
+                    else if (field3.Source != null)
+                    {
+                        field3.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field4":
+                    if (field4.Source == null)
+                    {
                         field4.Source = player2.Image;
-                        break;
-                    case "field5":
+                    }
+                    else if (field4.Source != null)
+                    {
+                        field4.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field5":
+                    if (field5.Source == null)
+                    {
                         field5.Source = player2.Image;
-                        break;
-                    case "field6":
+                    }
+                    else if (field5.Source != null)
+                    {
+                        field5.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field6":
+                    if (field6.Source == null)
+                    {
                         field6.Source = player2.Image;
-                        break;
-                    case "field7":
+                    }
+                    else if (field6.Source != null)
+                    {
+                        field6.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field7":
+                    if (field7.Source == null)
+                    {
                         field7.Source = player2.Image;
-                        break;
-                    case "field8":
+                    }
+                    else if (field7.Source != null)
+                    {
+                        field7.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field8":
+                    if (field8.Source == null)
+                    {
                         field8.Source = player2.Image;
-                        break;
-                    case "field9":
+                    }
+                    else if (field8.Source != null)
+                    {
+                        field8.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field9":
+                    if (field9.Source == null)
+                    {
                         field9.Source = player2.Image;
-                        break;
-                    case "field10":
+                    }
+                    else if (field9.Source != null)
+                    {
+                        field9.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field10":
+                    if (field10.Source == null)
+                    {
                         field10.Source = player2.Image;
-                        break;
-                    case "field11":
+                    }
+                    else if (field10.Source != null)
+                    {
+                        field10.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field11":
+                    if (field11.Source == null)
+                    {
                         field11.Source = player2.Image;
-                        break;
-                    case "field12":
+                    }
+                    else if (field11.Source != null)
+                    {
+                        field11.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field12":
+                    if (field12.Source == null)
+                    {
                         field12.Source = player2.Image;
-                        break;
-                    case "field13":
+                    }
+                    else if (field12.Source != null)
+                    {
+                        field12.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field13":
+                    if (field13.Source == null)
+                    {
                         field13.Source = player2.Image;
-                        break;
-                    case "field14":
+                    }
+                    else if (field13.Source != null)
+                    {
+                        field13.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field14":
+                    if (field14.Source == null)
+                    {
                         field14.Source = player2.Image;
-                        break;
-                    case "field15":
+                    }
+                    else if (field14.Source != null)
+                    {
+                        field14.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field15":
+                    if (field15.Source == null)
+                    {
                         field15.Source = player2.Image;
-                        break;
-                    case "field16":
+                    }
+                    else if (field15.Source != null)
+                    {
+                        field15.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field16":
+                    if (field16.Source == null)
+                    {
                         field16.Source = player2.Image;
-                        break;
-                    case "field17":
+                    }
+                    else if (field16.Source != null)
+                    {
+                        field16.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field17":
+                    if (field17.Source == null)
+                    {
                         field17.Source = player2.Image;
-                        break;
-                    case "field18":
+                    }
+                    else if (field17.Source != null)
+                    {
+                        field17.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field18":
+                    if (field18.Source == null)
+                    {
                         field18.Source = player2.Image;
-                        break;
-                    case "field19":
+                    }
+                    else if (field18.Source != null)
+                    {
+                        field18.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field19":
+                    if (field19.Source == null)
+                    {
                         field19.Source = player2.Image;
-                        break;
-                    case "field20":
+                    }
+                    else if (field19.Source != null)
+                    {
+                        field19.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field20":
+                    if (field20.Source == null)
+                    {
                         field20.Source = player2.Image;
-                        break;
-                    case "field21":
+                    }
+                    else if (field20.Source != null)
+                    {
+                        field20.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field21":
+                    if (field21.Source == null)
+                    {
                         field21.Source = player2.Image;
-                        break;
-                    case "field22":
+                    }
+                    else if (field21.Source != null)
+                    {
+                        field21.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field22":
+                    if (field22.Source == null)
+                    {
                         field22.Source = player2.Image;
-                        break;
-                    case "field23":
+                    }
+                    else if (field22.Source != null)
+                    {
+                        field22.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "field23":
+                    if (field23.Source == null)
+                    {
                         field23.Source = player2.Image;
-                        break;
-                }
+                    }
+                    else if (field23.Source != null)
+                    {
+                        field23.Source = "player1andplayer2img.png";
+                    }
+                    break;
             }
         }
     }

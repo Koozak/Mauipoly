@@ -31,38 +31,38 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Background="AliceBlue" x:Name="field1" Grid.Row="6" Grid.Column="0"/>
-            
-            <Image x:Name="field2" Grid.Row="5" Grid.Column="0"/>
-            <Image x:Name="field3" Grid.Row="4" Grid.Column="0"/>
-            <Image x:Name="field4" Grid.Row="3" Grid.Column="0"/>
-            <Image x:Name="field5" Grid.Row="2" Grid.Column="0"/>
-            <Image x:Name="field6" Grid.Row="1" Grid.Column="0"/>
-            
-            <Image x:Name="field7" Grid.Row="0" Grid.Column="0"/>
-            
-            <Image x:Name="field8" Grid.Row="0" Grid.Column="1"/>
-            <Image x:Name="field9" Grid.Row="0" Grid.Column="2"/>
-            <Image x:Name="field10" Grid.Row="0" Grid.Column="3"/>
-            <Image x:Name="field11" Grid.Row="0" Grid.Column="4"/>
-            <Image x:Name="field12" Grid.Row="0" Grid.Column="5"/>
-            
-            <Image x:Name="field13" Grid.Row="0" Grid.Column="6"/>
-            
-            <Image x:Name="field14" Grid.Row="1" Grid.Column="6"/>
-            <Image x:Name="field15" Grid.Row="2" Grid.Column="6"/>
-            <Image x:Name="field16" Grid.Row="3" Grid.Column="6"/>
-            <Image x:Name="field17" Grid.Row="4" Grid.Column="6"/>
-            <Image x:Name="field18" Grid.Row="5" Grid.Column="6"/>
+            <Image Source="player1andplayer2img.png" BackgroundColor="CornflowerBlue" x:Name="field1" Grid.Row="6" Grid.Column="0"/>
 
-            <Image x:Name="field19" Grid.Row="6" Grid.Column="6"/>
+            <Image BackgroundColor="#965339" x:Name="field2" Grid.Row="5" Grid.Column="0"/>
+            <Image BackgroundColor="#965339" x:Name="field3" Grid.Row="4" Grid.Column="0"/>
+            <Image BackgroundColor="#000000" x:Name="field4" Grid.Row="3" Grid.Column="0"/>
+            <Image BackgroundColor="#ACE3FF" x:Name="field5" Grid.Row="2" Grid.Column="0"/>
+            <Image BackgroundColor="#ACE3FF" x:Name="field6" Grid.Row="1" Grid.Column="0"/>
+
+            <Image BackgroundColor="CornflowerBlue" x:Name="field7" Grid.Row="0" Grid.Column="0"/>
+
+            <Image BackgroundColor="#DD3897" x:Name="field8" Grid.Row="0" Grid.Column="1"/>
+            <Image BackgroundColor="#DD3897" x:Name="field9" Grid.Row="0" Grid.Column="2"/>
+            <Image BackgroundColor="#000000" x:Name="field10" Grid.Row="0" Grid.Column="3"/>
+            <Image BackgroundColor="#F98F2B" x:Name="field11" Grid.Row="0" Grid.Column="4"/>
+            <Image BackgroundColor="#F98F2B" x:Name="field12" Grid.Row="0" Grid.Column="5"/>
+
+            <Image BackgroundColor="CornflowerBlue" x:Name="field13" Grid.Row="0" Grid.Column="6"/>
+
+            <Image BackgroundColor="#EF161F" x:Name="field14" Grid.Row="1" Grid.Column="6"/>
+            <Image BackgroundColor="#EF161F" x:Name="field15" Grid.Row="2" Grid.Column="6"/>
+            <Image BackgroundColor="#000000" x:Name="field16" Grid.Row="3" Grid.Column="6"/>
+            <Image BackgroundColor="#FEF300" x:Name="field17" Grid.Row="4" Grid.Column="6"/>
+            <Image BackgroundColor="#FEF300" x:Name="field18" Grid.Row="5" Grid.Column="6"/>
+
+            <Image BackgroundColor="CornflowerBlue" x:Name="field19" Grid.Row="6" Grid.Column="6"/>
 
 
-            <Image x:Name="field20" Grid.Row="6" Grid.Column="1"/>
-            <Image x:Name="field21" Grid.Row="6" Grid.Column="2"/>
-            <Image x:Name="field22" Grid.Row="6" Grid.Column="3"/>
-            <Image x:Name="field23" Grid.Row="6" Grid.Column="4"/>
-            <Image x:Name="field24" Grid.Row="6" Grid.Column="5"/>
+            <Image BackgroundColor="#1CB55B" x:Name="field20" Grid.Row="6" Grid.Column="1"/>
+            <Image BackgroundColor="#1CB55B" x:Name="field21" Grid.Row="6" Grid.Column="2"/>
+            <Image BackgroundColor="#000000" x:Name="field22" Grid.Row="6" Grid.Column="3"/>
+            <Image BackgroundColor="#0076B6" x:Name="field23" Grid.Row="6" Grid.Column="4"/>
+            <Image BackgroundColor="#0076B6" x:Name="field24" Grid.Row="6" Grid.Column="5"/>
 
 
 
