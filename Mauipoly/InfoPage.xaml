@@ -2,10 +2,58 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Mauipoly.InfoPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <!--<VerticalStackLayout>
+        <CarouselView>
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Item 1</x:String>
+                    <x:String>Item 2</x:String>
+                    <x:String>Item 3</x:String>
+                    <x:String>Item 4</x:String>
+                    <x:String>Item 5</x:String>
+                </x:Array>
+            </CarouselView.ItemsSource>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <VerticalStackLayout BackgroundColor="#E0E4FF" Padding="10">
+                        <Label FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding .}"></Label>
+                    </VerticalStackLayout>    
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </VerticalStackLayout>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image Source="infotest.png" Grid.RowSpan="2"></Image>
+        <StackLayout Grid.Column="1" Grid.Row="0">
+            <Label Text="How to Play" FontSize="Medium"></Label>
+            <Label>
+                When it's your turn, you roll the dice (2 × 4) by pressing the ThrowBtn button, then if you want, you can buy the field by clicking the BuyField button, if not, you end the turn by clicking the EndTurn button. 
+                The game ends when one player loses all his money.</Label>
+        </StackLayout>
+        <StackLayout Grid.Column="1" Grid.Row="1">
+            <Label Text="Explanation of numbers" FontSize="Medium"></Label>
+            <Label>1. This is the indicator that shows which player turn it is 
+                2. This is an indicator that shows the player's money balance
+                3. This is the Player Icon
+                4. This is the dice roll button (2x4)
+                5. This is the button to end the turn
+                6. This is the button to buy fields
+                7. This is a field that cannot be bought
+                8. This field costs 50
+                9. This field costs 150
+                10. This field costs (150,300,500,600)
+                11. This field costs 300
+                12. This field costs 500
+            </Label>
+        </StackLayout>
+        
+    </Grid>
 </ContentPage>

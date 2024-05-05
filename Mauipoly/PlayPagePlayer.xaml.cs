@@ -12,8 +12,8 @@ public partial class PlayPagePlayer : ContentPage
     public int xdplayer1 = 0;
     public int xdplayer2 = 0;
     private BoardField[] fields = new BoardField[24];
-    Player player1 = new Player("Fast_Tomek", false, "player1img.png");
-    Player player2 = new Player("Fast_Romek", false, "player2img.png");
+    Player player1 = new Player("Player1", false, "player1img.png");
+    Player player2 = new Player("Player2", false, "player2img.png");
 
     public PlayPagePlayer()
     {
