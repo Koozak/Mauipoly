@@ -1,3 +1,4 @@
+using MauiPageFullScreen;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
@@ -6,6 +7,16 @@ namespace Mauipoly;
 public partial class PlayPagePlayer : ContentPage
 {
     int global = 0;
+    bool yesp11 = false;
+    bool yesp12 = false;
+    bool yesp13 = false;
+    bool yesp14 = false;
+    bool yesp21 = false;
+    bool yesp22 = false;
+    bool yesp23 = false;
+    bool yesp24 = false;
+    int if_won_player1 = 0;
+    int if_won_player2 = 0;
     Random rnd = new Random();
     Random rnd1 = new Random();
     Random rnd2 = new Random();
@@ -23,7 +34,10 @@ public partial class PlayPagePlayer : ContentPage
 
     }
 
-
+    private void Btn_Fullscreen_Clicked(object sender, EventArgs e)
+    {
+        Controls.ToggleFullScreenStatus();
+    }
     private void Whose_Turn(Player one, Player two)
     {
         int value = rnd.Next(1, 3);
@@ -124,6 +138,51 @@ public partial class PlayPagePlayer : ContentPage
             ShowingStats(player2);
             BuyField.Opacity = 1;
             BuyField.IsEnabled = true;
+            foreach (var field in player1.BoardFieldList)
+            {
+                if (field!=null&&field.Name == "betrayal1")
+                {
+                    if (yesp11 == false)
+                    {
+                        if_won_player1++;
+                        yesp11 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal2")
+                {
+                    if (yesp12 == false)
+                    {
+                        if_won_player1++;
+                        yesp12 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal3")
+                {
+                    if (yesp13 == false)
+                    {
+                        if_won_player1++;
+                        yesp13 = true;
+                    }
+                }
+                if(field != null && field.Name == "betrayal4")
+                {
+                    if (yesp14 == false)
+                    {
+                        if_won_player1++;
+                        yesp14 = true;
+                    }
+                }
+            }
+            if (if_won_player1 == 4)
+            {
+                DisplayAlert("End Game", "Player 1 won", "OK");
+                ThrowBtn.Opacity = 0.5;
+                ThrowBtn.IsEnabled = false;
+                EndTurn.Opacity = 0.5;
+                EndTurn.IsEnabled = false;
+                BuyField.Opacity = 0.5;
+                BuyField.IsEnabled = false;
+            }
         }
         else
         {
@@ -134,6 +193,53 @@ public partial class PlayPagePlayer : ContentPage
             ShowingStats(player1);
             BuyField.Opacity = 1;
             BuyField.IsEnabled = true;
+            foreach (var field in player2.BoardFieldList)
+            {
+                if (field != null && field.Name == "betrayal1")
+                {
+                    if (yesp21 == false)
+                    {
+                        if_won_player2++;
+                        yesp21 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal2")
+                {
+                    if (yesp22 == false)
+                    {
+                        if_won_player2++;
+                        yesp22 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal3")
+                {
+                    if (yesp23==false)
+                    {
+                        if_won_player2++;
+                        yesp23 = true;
+                    }
+                    
+                }
+                if (field != null && field.Name == "betrayal4")
+                {
+                    if (yesp24 == false)
+                    {
+                        if_won_player2++;
+                        yesp24 = true;
+                    }
+                }
+            }
+            if (if_won_player2 == 4)
+            {
+                DisplayAlert("End Game", "Player 2 won", "OK");
+                ThrowBtn.Opacity = 0.5;
+                ThrowBtn.IsEnabled = false;
+                EndTurn.Opacity = 0.5;
+                EndTurn.IsEnabled = false;
+                BuyField.Opacity = 0.5;
+                BuyField.IsEnabled = false;
+            }
+
         }
     }
     private void Btn_BuyField_Clicked(object sender, EventArgs e)
@@ -212,236 +318,236 @@ public partial class PlayPagePlayer : ContentPage
         {
             switch (fields[xdplayer1].Name)
             {
-                case "field1":
-                    if (field1.Source!=null && field1.Source.ToString() == "File: player1andplayer2img.png")
+                case "Start":
+                    if (Start.Source!=null && Start.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field1.Source = player2.Image;
+                        Start.Source = player2.Image;
                     }
                     else
                     {
-                        field1.Source = null;
+                        Start.Source = null;
                     }
                     break;
 
-                case "field2":
-                    if (field2.Source.ToString() == "File: player1andplayer2img.png")
+                case "prison1":
+                    if (prison1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field2.Source = player2.Image;
+                        prison1.Source = player2.Image;
                     }
                     else
                     {
-                        field2.Source = null;
+                        prison1.Source = null;
                     }
                     break;
 
-                case "field3":
-                    if (field3.Source.ToString() == "File: player1andplayer2img.png")
+                case "prison2":
+                    if (prison2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field3.Source = player2.Image;
+                        prison2.Source = player2.Image;
                     }
                     else
                     {
-                        field3.Source = null;
+                        prison2.Source = null;
                     }
                     break;
-                case "field4":
-                    if (field4.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal1":
+                    if (betrayal1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field4.Source = player2.Image;
+                        betrayal1.Source = player2.Image;
                     }
                     else
                     {
-                        field4.Source = null;
+                        betrayal1.Source = null;
                     }
                     break;
-                case "field5":
-                    if (field5.Source.ToString() == "File: player1andplayer2img.png")
+                case "desire1":
+                    if (desire1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field5.Source = player2.Image;
+                        desire1.Source = player2.Image;
                     }
                     else
                     {
-                        field5.Source = null;
+                        desire1.Source = null;
                     }
                     break;
-                case "field6":
-                    if (field6.Source.ToString() == "File: player1andplayer2img.png")
+                case "desire2":
+                    if (desire2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field6.Source = player2.Image;
+                        desire2.Source = player2.Image;
                     }
                     else
                     {
-                        field6.Source = null;
+                        desire2.Source = null;
                     }
                     break;
-                case "field7":
-                    if (field7.Source.ToString() == "File: player1andplayer2img.png")
+                case "cambions":
+                    if (cambions.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field7.Source = player2.Image;
+                        cambions.Source = player2.Image;
                     }
                     else
                     {
-                        field7.Source = null;
+                        cambions.Source = null;
                     }
                     break;
-                case "field8":
-                    if (field8.Source.ToString() == "File: player1andplayer2img.png")
+                case "gluttony1":
+                    if (gluttony1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field8.Source = player2.Image;
+                        gluttony1.Source = player2.Image;
                     }
                     else
                     {
-                        field8.Source = null;
+                        gluttony1.Source = null;
                     }
                     break;
-                case "field9":
-                    if (field9.Source.ToString() == "File: player1andplayer2img.png")
+                case "gluttony2":
+                    if (gluttony2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field9.Source = player2.Image;
+                        gluttony2.Source = player2.Image;
                     }
                     else
                     {
-                        field9.Source = null;
+                        gluttony2.Source = null;
                     }
                     break;
-                case "field10":
-                    if (field10.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal2":
+                    if (betrayal2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field10.Source = player2.Image;
+                        betrayal2.Source = player2.Image;
                     }
                     else
                     {
-                        field10.Source = null;
+                        betrayal2.Source = null;
                     }
                     break;
-                case "field11":
-                    if (field11.Source.ToString() == "File: player1andplayer2img.png")
+                case "greed1":
+                    if (greed1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field11.Source = player2.Image;
+                        greed1.Source = player2.Image;
                     }
                     else
                     {
-                        field11.Source = null;
+                        greed1.Source = null;
                     }
                     break;
-                case "field12":
-                    if (field12.Source.ToString() == "File: player1andplayer2img.png")
+                case "greed2":
+                    if (greed2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field12.Source = player2.Image;
+                        greed2.Source = player2.Image;
                     }
                     else
                     {
-                        field12.Source = null;
+                        greed2.Source = null;
                     }
                     break;
-                case "field13":
-                    if (field13.Source.ToString() == "File: player1andplayer2img.png")
+                case "wayToHeven":
+                    if (wayToHeven.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field13.Source = player2.Image;
+                        wayToHeven.Source = player2.Image;
                     }
                     else
                     {
-                        field13.Source = null;
+                        wayToHeven.Source = null;
                     }
                     break;
-                case "field14":
-                    if (field14.Source.ToString() == "File: player1andplayer2img.png")
+                case "anger1":
+                    if (anger1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field14.Source = player2.Image;
+                        anger1.Source = player2.Image;
                     }
                     else
                     {
-                        field14.Source = null;
+                        anger1.Source = null;
                     }
                     break;
-                case "field15":
-                    if (field15.Source.ToString() == "File: player1andplayer2img.png")
+                case "anger2":
+                    if (anger2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field15.Source = player2.Image;
+                        anger2.Source = player2.Image;
                     }
                     else
                     {
-                        field15.Source = null;
+                        anger2.Source = null;
                     }
                     break;
-                case "field16":
-                    if (field16.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal3":
+                    if (betrayal3.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field16.Source = player2.Image;
+                        betrayal3.Source = player2.Image;
                     }
                     else
                     {
-                        field16.Source = null;
+                        betrayal3.Source = null;
                     }
                     break;
-                case "field17":
-                    if (field17.Source.ToString() == "File: player1andplayer2img.png")
+                case "heresy1":
+                    if (heresy1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field17.Source = player2.Image;
+                        heresy1.Source = player2.Image;
                     }
                     else
                     {
-                        field17.Source = null;
+                        heresy1.Source = null;
                     }
                     break;
-                case "field18":
-                    if (field18.Source.ToString() == "File: player1andplayer2img.png")
+                case "heresy2":
+                    if (heresy2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field18.Source = player2.Image;
+                        heresy2.Source = player2.Image;
                     }
                     else
                     {
-                        field18.Source = null;
+                        heresy2.Source = null;
                     }
                     break;
-                case "field19":
-                    if (field19.Source.ToString() == "File: player1andplayer2img.png")
+                case "devil":
+                    if (devil.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field19.Source = player2.Image;
+                        devil.Source = player2.Image;
                     }
                     else
                     {
-                        field19.Source = null;
+                        devil.Source = null;
                     }
                     break;
-                case "field20":
-                    if (field20.Source.ToString() == "File: player1andplayer2img.png")
+                case "violence1":
+                    if (violence1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field20.Source = player2.Image;
+                        violence1.Source = player2.Image;
                     }
                     else
                     {
-                        field20.Source = null;
+                        violence1.Source = null;
                     }
                     break;
-                case "field21":
-                    if (field21.Source.ToString() == "File: player1andplayer2img.png")
+                case "violence2":
+                    if (violence2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field21.Source = player2.Image;
+                        violence2.Source = player2.Image;
                     }
                     else
                     {
-                        field21.Source = null;
+                        violence2.Source = null;
                     }
                     break;
-                case "field22":
-                    if (field22.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal4":
+                    if (betrayal4.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field22.Source = player2.Image;
+                        betrayal4.Source = player2.Image;
                     }
                     else
                     {
-                        field22.Source = null;
+                        betrayal4.Source = null;
                     }
                     break;
-                case "field23":
-                    if (field23.Source.ToString() == "File: player1andplayer2img.png")
+                case "extortion1":
+                    if (extortion1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field23.Source = player2.Image;
+                        extortion1.Source = player2.Image;
                     }
                     else
                     {
-                        field23.Source = null;
+                        extortion1.Source = null;
                     }
                     break;
             }
@@ -454,236 +560,236 @@ public partial class PlayPagePlayer : ContentPage
             }
             switch (fields[xdplayer1].Name)
             {
-                case "field1":
-                    if (field1.Source == null)
+                case "Start":
+                    if (Start.Source == null)
                     {
-                        field1.Source = player1.Image;
+                        Start.Source = player1.Image;
                     }
-                    else if (field1.Source != null)
+                    else if (Start.Source != null)
                     {
-                        field1.Source = "player1andplayer2img.png";
-                    }
-                    break;
-
-                case "field2":
-                    if (field2.Source == null)
-                    {
-                        field2.Source = player1.Image;
-                    }
-                    else if (field2.Source != null)
-                    {
-                        field2.Source = "player1andplayer2img.png";
+                        Start.Source = "player1andplayer2img.png";
                     }
                     break;
 
-                case "field3":
-                    if (field3.Source == null)
+                case "prison1":
+                    if (prison1.Source == null)
                     {
-                        field3.Source = player1.Image;
+                        prison1.Source = player1.Image;
                     }
-                    else if (field3.Source != null)
+                    else if (prison1.Source != null)
                     {
-                        field3.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field4":
-                    if (field4.Source == null)
-                    {
-                        field4.Source = player1.Image;
-                    }
-                    else if (field4.Source != null)
-                    {
-                        field4.Source = "player1andplayer2img.png";
+                        prison1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field5":
-                    if (field5.Source == null)
+
+                case "prison2":
+                    if (prison2.Source == null)
                     {
-                        field5.Source = player1.Image;
+                        prison2.Source = player1.Image;
                     }
-                    else if (field5.Source != null)
+                    else if (prison2.Source != null)
                     {
-                        field5.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field6":
-                    if (field6.Source == null)
-                    {
-                        field6.Source = player1.Image;
-                    }
-                    else if (field6.Source != null)
-                    {
-                        field6.Source = "player1andplayer2img.png";
+                        prison2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field7":
-                    if (field7.Source == null)
+                case "betrayal1":
+                    if (betrayal1.Source == null)
                     {
-                        field7.Source = player1.Image;
+                        betrayal1.Source = player1.Image;
                     }
-                    else if (field7.Source != null)
+                    else if (betrayal1.Source != null)
                     {
-                        field7.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field8":
-                    if (field8.Source == null)
-                    {
-                        field8.Source = player1.Image;
-                    }
-                    else if (field8.Source != null)
-                    {
-                        field8.Source = "player1andplayer2img.png";
+                        betrayal1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field9":
-                    if (field9.Source == null)
+                case "desire1":
+                    if (desire1.Source == null)
                     {
-                        field9.Source = player1.Image;
+                        desire1.Source = player1.Image;
                     }
-                    else if (field9.Source != null)
+                    else if (desire1.Source != null)
                     {
-                        field9.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field10":
-                    if (field10.Source == null)
-                    {
-                        field10.Source = player1.Image;
-                    }
-                    else if (field10.Source != null)
-                    {
-                        field10.Source = "player1andplayer2img.png";
+                        desire1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field11":
-                    if (field11.Source == null)
+                case "desire2":
+                    if (desire2.Source == null)
                     {
-                        field11.Source = player1.Image;
+                        desire2.Source = player1.Image;
                     }
-                    else if (field11.Source != null)
+                    else if (desire2.Source != null)
                     {
-                        field11.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field12":
-                    if (field12.Source == null)
-                    {
-                        field12.Source = player1.Image;
-                    }
-                    else if (field12.Source != null)
-                    {
-                        field12.Source = "player1andplayer2img.png";
+                        desire2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field13":
-                    if (field13.Source == null)
+                case "cambions":
+                    if (cambions.Source == null)
                     {
-                        field13.Source = player1.Image;
+                        cambions.Source = player1.Image;
                     }
-                    else if (field13.Source != null)
+                    else if (cambions.Source != null)
                     {
-                        field13.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field14":
-                    if (field14.Source == null)
-                    {
-                        field14.Source = player1.Image;
-                    }
-                    else if (field14.Source != null)
-                    {
-                        field14.Source = "player1andplayer2img.png";
+                        cambions.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field15":
-                    if (field15.Source == null)
+                case "gluttony1":
+                    if (gluttony1.Source == null)
                     {
-                        field15.Source = player1.Image;
+                        gluttony1.Source = player1.Image;
                     }
-                    else if (field15.Source != null)
+                    else if (gluttony1.Source != null)
                     {
-                        field15.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field16":
-                    if (field16.Source == null)
-                    {
-                        field16.Source = player1.Image;
-                    }
-                    else if (field16.Source != null)
-                    {
-                        field16.Source = "player1andplayer2img.png";
+                        gluttony1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field17":
-                    if (field17.Source == null)
+                case "gluttony2":
+                    if (gluttony2.Source == null)
                     {
-                        field17.Source = player1.Image;
+                        gluttony2.Source = player1.Image;
                     }
-                    else if (field17.Source != null)
+                    else if (gluttony2.Source != null)
                     {
-                        field17.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field18":
-                    if (field18.Source == null)
-                    {
-                        field18.Source = player1.Image;
-                    }
-                    else if (field18.Source != null)
-                    {
-                        field18.Source = "player1andplayer2img.png";
+                        gluttony2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field19":
-                    if (field19.Source == null)
+                case "betrayal2":
+                    if (betrayal2.Source == null)
                     {
-                        field19.Source = player1.Image;
+                        betrayal2.Source = player1.Image;
                     }
-                    else if (field19.Source != null)
+                    else if (betrayal2.Source != null)
                     {
-                        field19.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field20":
-                    if (field20.Source == null)
-                    {
-                        field20.Source = player1.Image;
-                    }
-                    else if (field20.Source != null)
-                    {
-                        field20.Source = "player1andplayer2img.png";
+                        betrayal2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field21":
-                    if (field21.Source == null)
+                case "greed1":
+                    if (greed1.Source == null)
                     {
-                        field21.Source = player1.Image;
+                        greed1.Source = player1.Image;
                     }
-                    else if (field21.Source != null)
+                    else if (greed1.Source != null)
                     {
-                        field21.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field22":
-                    if (field22.Source == null)
-                    {
-                        field22.Source = player1.Image;
-                    }
-                    else if (field22.Source != null)
-                    {
-                        field22.Source = "player1andplayer2img.png";
+                        greed1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field23":
-                    if (field23.Source == null)
+                case "greed2":
+                    if (greed2.Source == null)
                     {
-                        field23.Source = player1.Image;
+                        greed2.Source = player1.Image;
                     }
-                    else if (field23.Source != null)
+                    else if (greed2.Source != null)
                     {
-                        field23.Source = "player1andplayer2img.png";
+                        greed2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "wayToHeven":
+                    if (wayToHeven.Source == null)
+                    {
+                        wayToHeven.Source = player1.Image;
+                    }
+                    else if (wayToHeven.Source != null)
+                    {
+                        wayToHeven.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "anger1":
+                    if (anger1.Source == null)
+                    {
+                        anger1.Source = player1.Image;
+                    }
+                    else if (anger1.Source != null)
+                    {
+                        anger1.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "anger2":
+                    if (anger2.Source == null)
+                    {
+                        anger2.Source = player1.Image;
+                    }
+                    else if (anger2.Source != null)
+                    {
+                        anger2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "betrayal3":
+                    if (betrayal3.Source == null)
+                    {
+                        betrayal3.Source = player1.Image;
+                    }
+                    else if (betrayal3.Source != null)
+                    {
+                        betrayal3.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "heresy1":
+                    if (heresy1.Source == null)
+                    {
+                        heresy1.Source = player1.Image;
+                    }
+                    else if (heresy1.Source != null)
+                    {
+                        heresy1.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "heresy2":
+                    if (heresy2.Source == null)
+                    {
+                        heresy2.Source = player1.Image;
+                    }
+                    else if (heresy2.Source != null)
+                    {
+                        heresy2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "devil":
+                    if (devil.Source == null)
+                    {
+                        devil.Source = player1.Image;
+                    }
+                    else if (devil.Source != null)
+                    {
+                        devil.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "violence1":
+                    if (violence1.Source == null)
+                    {
+                        violence1.Source = player1.Image;
+                    }
+                    else if (violence1.Source != null)
+                    {
+                        violence1.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "violence2":
+                    if (violence2.Source == null)
+                    {
+                        violence2.Source = player1.Image;
+                    }
+                    else if (violence2.Source != null)
+                    {
+                        violence2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "betrayal4":
+                    if (betrayal4.Source == null)
+                    {
+                        betrayal4.Source = player1.Image;
+                    }
+                    else if (betrayal4.Source != null)
+                    {
+                        betrayal4.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "extortion1":
+                    if (extortion1.Source == null)
+                    {
+                        extortion1.Source = player1.Image;
+                    }
+                    else if (extortion1.Source != null)
+                    {
+                        extortion1.Source = "player1andplayer2img.png";
                     }
                     break;
             }
@@ -692,479 +798,478 @@ public partial class PlayPagePlayer : ContentPage
         {
             switch (fields[xdplayer2].Name)
             {
-                case "field1":
-                    if (field1.Source!=null && field1.Source.ToString() == "File: player1andplayer2img.png")
+                case "Start":
+                    if (Start.Source!=null && Start.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field1.Source = player1.Image;
+                        Start.Source = player1.Image;
                     }
                     else
                     {
-                        field1.Source = null;
+                        Start.Source = null;
                     }
                     break;
 
-                case "field2":
-                    if (field2.Source != null && field2.Source.ToString() == "File: player1andplayer2img.png")
+                case "prison1":
+                    if (prison1.Source != null && prison1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field2.Source = player1.Image;
+                        prison1.Source = player1.Image;
                     }
                     else
                     {
-                        field2.Source = null;
+                        prison1.Source = null;
                     }
                     break;
 
-                case "field3":
-                    if (field3.Source != null && field3.Source.ToString() == "File: player1andplayer2img.png")
+                case "prison2":
+                    if (prison2.Source != null && prison2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field3.Source = player1.Image;
+                        prison2.Source = player1.Image;
                     }
                     else
                     {
-                        field3.Source = null;
+                        prison2.Source = null;
                     }
                     break;
-                case "field4":
-                    if (field4.Source != null && field4.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal1":
+                    if (betrayal1.Source != null && betrayal1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field4.Source = player1.Image;
+                        betrayal1.Source = player1.Image;
                     }
                     else
                     {
-                        field4.Source = null;
+                        betrayal1.Source = null;
                     }
                     break;
-                case "field5":
-                    if (field5.Source != null && field5.Source.ToString() == "File: player1andplayer2img.png")
+                case "desire1":
+                    if (desire1.Source != null && desire1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field5.Source = player1.Image;
+                        desire1.Source = player1.Image;
                     }
                     else
                     {
-                        field5.Source = null;
+                        desire1.Source = null;
                     }
                     break;
-                case "field6":
-                    if (field6.Source != null && field6.Source.ToString() == "File: player1andplayer2img.png")
+                case "desire2":
+                    if (desire2.Source != null && desire2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field6.Source = player1.Image;
+                        desire2.Source = player1.Image;
                     }
                     else
                     {
-                        field6.Source = null;
+                        desire2.Source = null;
                     }
                     break;
-                case "field7":
-                    if (field7.Source != null && field7.Source.ToString() == "File: player1andplayer2img.png")
+                case "cambions":
+                    if (cambions.Source != null && cambions.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field7.Source = player1.Image;
+                        cambions.Source = player1.Image;
                     }
                     else
                     {
-                        field7.Source = null;
+                        cambions.Source = null;
                     }
                     break;
-                case "field8":
-                    if (field8.Source != null && field8.Source.ToString() == "File: player1andplayer2img.png")
+                case "gluttony1":
+                    if (gluttony1.Source != null && gluttony1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field8.Source = player1.Image;
+                        gluttony1.Source = player1.Image;
                     }
                     else
                     {
-                        field8.Source = null;
+                        gluttony1.Source = null;
                     }
                     break;
-                case "field9":
-                    if (field9.Source != null && field9.Source.ToString() == "File: player1andplayer2img.png")
+                case "gluttony2":
+                    if (gluttony2.Source != null && gluttony2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field9.Source = player1.Image;
+                        gluttony2.Source = player1.Image;
                     }
                     else
                     {
-                        field9.Source = null;
+                        gluttony2.Source = null;
                     }
                     break;
-                case "field10":
-                    if (field10.Source != null && field10.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal2":
+                    if (betrayal2.Source != null && betrayal2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field10.Source = player1.Image;
+                        betrayal2.Source = player1.Image;
                     }
                     else
                     {
-                        field10.Source = null;
+                        betrayal2.Source = null;
                     }
                     break;
-                case "field11":
-                    if (field11.Source != null && field11.Source.ToString() == "File: player1andplayer2img.png")
+                case "greed1":
+                    if (greed1.Source != null && greed1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field11.Source = player1.Image;
+                        greed1.Source = player1.Image;
                     }
                     else
                     {
-                        field11.Source = null;
+                        greed1.Source = null;
                     }
                     break;
-                case "field12":
-                    if (field12.Source.ToString() == "File: player1andplayer2img.png")
+                case "greed2":
+                    if (greed2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field12.Source = player1.Image;
+                        greed2.Source = player1.Image;
                     }
                     else
                     {
-                        field12.Source = null;
+                        greed2.Source = null;
                     }
                     break;
-                case "field13":
-                    if (field13.Source.ToString() == "File: player1andplayer2img.png")
+                case "wayToHeven":
+                    if (wayToHeven.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field13.Source = player1.Image;
+                        wayToHeven.Source = player1.Image;
                     }
                     else
                     {
-                        field13.Source = null;
+                        wayToHeven.Source = null;
                     }
                     break;
-                case "field14":
-                    if (field14.Source.ToString() == "File: player1andplayer2img.png")
+                case "anger1":
+                    if (anger1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field14.Source = player1.Image;
+                        anger1.Source = player1.Image;
                     }
                     else
                     {
-                        field14.Source = null;
+                        anger1.Source = null;
                     }
                     break;
-                case "field15":
-                    if (field15.Source.ToString() == "File: player1andplayer2img.png")
+                case "anger2":
+                    if (anger2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field15.Source = player1.Image;
+                        anger2.Source = player1.Image;
                     }
                     else
                     {
-                        field15.Source = null;
+                        anger2.Source = null;
                     }
                     break;
-                case "field16":
-                    if (field16.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal3":
+                    if (betrayal3.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field16.Source = player1.Image;
+                        betrayal3.Source = player1.Image;
                     }
                     else
                     {
-                        field16.Source = null;
+                        betrayal3.Source = null;
                     }
                     break;
-                case "field17":
-                    if (field17.Source.ToString() == "File: player1andplayer2img.png")
+                case "heresy1":
+                    if (heresy1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field17.Source = player1.Image;
+                        heresy1.Source = player1.Image;
                     }
                     else
                     {
-                        field17.Source = null;
+                        heresy1.Source = null;
                     }
                     break;
-                case "field18":
-                    if (field18.Source.ToString() == "File: player1andplayer2img.png")
+                case "heresy2":
+                    if (heresy2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field18.Source = player1.Image;
+                        heresy2.Source = player1.Image;
                     }
                     else
                     {
-                        field18.Source = null;
+                        heresy2.Source = null;
                     }
                     break;
-                case "field19":
-                    if (field19.Source.ToString() == "File: player1andplayer2img.png")
+                case "devil":
+                    if (devil.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field19.Source = player1.Image;
+                        devil.Source = player1.Image;
                     }
                     else
                     {
-                        field19.Source = null;
+                        devil.Source = null;
                     }
                     break;
-                case "field20":
-                    if (field20.Source.ToString() == "File: player1andplayer2img.png")
+                case "violence1":
+                    if (violence1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field20.Source = player1.Image;
+                        violence1.Source = player1.Image;
                     }
                     else
                     {
-                        field20.Source = null;
+                        violence1.Source = null;
                     }
                     break;
-                case "field21":
-                    if (field21.Source.ToString() == "File: player1andplayer2img.png")
+                case "violence2":
+                    if (violence2.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field21.Source = player1.Image;
+                        violence2.Source = player1.Image;
                     }
                     else
                     {
-                        field21.Source = null;
+                        violence2.Source = null;
                     }
                     break;
-                case "field22":
-                    if (field22.Source.ToString() == "File: player1andplayer2img.png")
+                case "betrayal4":
+                    if (betrayal4.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field22.Source = player1.Image;
+                        betrayal4.Source = player1.Image;
                     }
                     else
                     {
-                        field22.Source = null;
+                        betrayal4.Source = null;
                     }
                     break;
-                case "field23":
-                    if (field23.Source.ToString() == "File: player1andplayer2img.png")
+                case "extortion1":
+                    if (extortion1.Source.ToString() == "File: player1andplayer2img.png")
                     {
-                        field23.Source = player1.Image;
+                        extortion1.Source = player1.Image;
                     }
                     else
                     {
-                        field23.Source = null;
+                        extortion1.Source = null;
                     }
                     break;
             }
             xdplayer2 = xdplayer2 + r;
             if (xdplayer2 >= 23)
             {
-                int help1 = 23 - xdplayer2;
+                int help1 = xdplayer2 - 23;
                 xdplayer2 = 0 + help1;
                 player2.Money = player2.Money + 200;
-                xdplayer2 = xdplayer2 + r;
             }
             switch (fields[xdplayer2].Name)
             {
-                case "field1":
-                    if (field1.Source == null)
+                case "Start":
+                    if (Start.Source == null)
                     {
-                        field1.Source = player2.Image;
+                        Start.Source = player2.Image;
                     }
-                    else if (field1.Source != null)
+                    else if (Start.Source != null)
                     {
-                        field1.Source = "player1andplayer2img.png";
-                    }
-                    break;
-
-                case "field2":
-                    if (field2.Source == null)
-                    {
-                        field2.Source = player2.Image;
-                    }
-                    else if (field2.Source != null)
-                    {
-                        field2.Source = "player1andplayer2img.png";
+                        Start.Source = "player1andplayer2img.png";
                     }
                     break;
 
-                case "field3":
-                    if (field3.Source == null)
+                case "prison1":
+                    if (prison1.Source == null)
                     {
-                        field3.Source = player2.Image;
+                        prison1.Source = player2.Image;
                     }
-                    else if (field3.Source != null)
+                    else if (prison1.Source != null)
                     {
-                        field3.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field4":
-                    if (field4.Source == null)
-                    {
-                        field4.Source = player2.Image;
-                    }
-                    else if (field4.Source != null)
-                    {
-                        field4.Source = "player1andplayer2img.png";
+                        prison1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field5":
-                    if (field5.Source == null)
+
+                case "prison2":
+                    if (prison2.Source == null)
                     {
-                        field5.Source = player2.Image;
+                        prison2.Source = player2.Image;
                     }
-                    else if (field5.Source != null)
+                    else if (prison2.Source != null)
                     {
-                        field5.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field6":
-                    if (field6.Source == null)
-                    {
-                        field6.Source = player2.Image;
-                    }
-                    else if (field6.Source != null)
-                    {
-                        field6.Source = "player1andplayer2img.png";
+                        prison2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field7":
-                    if (field7.Source == null)
+                case "betrayal1":
+                    if (betrayal1.Source == null)
                     {
-                        field7.Source = player2.Image;
+                        betrayal1.Source = player2.Image;
                     }
-                    else if (field7.Source != null)
+                    else if (betrayal1.Source != null)
                     {
-                        field7.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field8":
-                    if (field8.Source == null)
-                    {
-                        field8.Source = player2.Image;
-                    }
-                    else if (field8.Source != null)
-                    {
-                        field8.Source = "player1andplayer2img.png";
+                        betrayal1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field9":
-                    if (field9.Source == null)
+                case "desire1":
+                    if (desire1.Source == null)
                     {
-                        field9.Source = player2.Image;
+                        desire1.Source = player2.Image;
                     }
-                    else if (field9.Source != null)
+                    else if (desire1.Source != null)
                     {
-                        field9.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field10":
-                    if (field10.Source == null)
-                    {
-                        field10.Source = player2.Image;
-                    }
-                    else if (field10.Source != null)
-                    {
-                        field10.Source = "player1andplayer2img.png";
+                        desire1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field11":
-                    if (field11.Source == null)
+                case "desire2":
+                    if (desire2.Source == null)
                     {
-                        field11.Source = player2.Image;
+                        desire2.Source = player2.Image;
                     }
-                    else if (field11.Source != null)
+                    else if (desire2.Source != null)
                     {
-                        field11.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field12":
-                    if (field12.Source == null)
-                    {
-                        field12.Source = player2.Image;
-                    }
-                    else if (field12.Source != null)
-                    {
-                        field12.Source = "player1andplayer2img.png";
+                        desire2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field13":
-                    if (field13.Source == null)
+                case "cambions":
+                    if (cambions.Source == null)
                     {
-                        field13.Source = player2.Image;
+                        cambions.Source = player2.Image;
                     }
-                    else if (field13.Source != null)
+                    else if (cambions.Source != null)
                     {
-                        field13.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field14":
-                    if (field14.Source == null)
-                    {
-                        field14.Source = player2.Image;
-                    }
-                    else if (field14.Source != null)
-                    {
-                        field14.Source = "player1andplayer2img.png";
+                        cambions.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field15":
-                    if (field15.Source == null)
+                case "gluttony1":
+                    if (gluttony1.Source == null)
                     {
-                        field15.Source = player2.Image;
+                        gluttony1.Source = player2.Image;
                     }
-                    else if (field15.Source != null)
+                    else if (gluttony1.Source != null)
                     {
-                        field15.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field16":
-                    if (field16.Source == null)
-                    {
-                        field16.Source = player2.Image;
-                    }
-                    else if (field16.Source != null)
-                    {
-                        field16.Source = "player1andplayer2img.png";
+                        gluttony1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field17":
-                    if (field17.Source == null)
+                case "gluttony2":
+                    if (gluttony2.Source == null)
                     {
-                        field17.Source = player2.Image;
+                        gluttony2.Source = player2.Image;
                     }
-                    else if (field17.Source != null)
+                    else if (gluttony2.Source != null)
                     {
-                        field17.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field18":
-                    if (field18.Source == null)
-                    {
-                        field18.Source = player2.Image;
-                    }
-                    else if (field18.Source != null)
-                    {
-                        field18.Source = "player1andplayer2img.png";
+                        gluttony2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field19":
-                    if (field19.Source == null)
+                case "betrayal2":
+                    if (betrayal2.Source == null)
                     {
-                        field19.Source = player2.Image;
+                        betrayal2.Source = player2.Image;
                     }
-                    else if (field19.Source != null)
+                    else if (betrayal2.Source != null)
                     {
-                        field19.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field20":
-                    if (field20.Source == null)
-                    {
-                        field20.Source = player2.Image;
-                    }
-                    else if (field20.Source != null)
-                    {
-                        field20.Source = "player1andplayer2img.png";
+                        betrayal2.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field21":
-                    if (field21.Source == null)
+                case "greed1":
+                    if (greed1.Source == null)
                     {
-                        field21.Source = player2.Image;
+                        greed1.Source = player2.Image;
                     }
-                    else if (field21.Source != null)
+                    else if (greed1.Source != null)
                     {
-                        field21.Source = "player1andplayer2img.png";
-                    }
-                    break;
-                case "field22":
-                    if (field22.Source == null)
-                    {
-                        field22.Source = player2.Image;
-                    }
-                    else if (field22.Source != null)
-                    {
-                        field22.Source = "player1andplayer2img.png";
+                        greed1.Source = "player1andplayer2img.png";
                     }
                     break;
-                case "field23":
-                    if (field23.Source == null)
+                case "greed2":
+                    if (greed2.Source == null)
                     {
-                        field23.Source = player2.Image;
+                        greed2.Source = player2.Image;
                     }
-                    else if (field23.Source != null)
+                    else if (greed2.Source != null)
                     {
-                        field23.Source = "player1andplayer2img.png";
+                        greed2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "wayToHeven":
+                    if (wayToHeven.Source == null)
+                    {
+                        wayToHeven.Source = player2.Image;
+                    }
+                    else if (wayToHeven.Source != null)
+                    {
+                        wayToHeven.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "anger1":
+                    if (anger1.Source == null)
+                    {
+                        anger1.Source = player2.Image;
+                    }
+                    else if (anger1.Source != null)
+                    {
+                        anger1.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "anger2":
+                    if (anger2.Source == null)
+                    {
+                        anger2.Source = player2.Image;
+                    }
+                    else if (anger2.Source != null)
+                    {
+                        anger2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "betrayal3":
+                    if (betrayal3.Source == null)
+                    {
+                        betrayal3.Source = player2.Image;
+                    }
+                    else if (betrayal3.Source != null)
+                    {
+                        betrayal3.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "heresy1":
+                    if (heresy1.Source == null)
+                    {
+                        heresy1.Source = player2.Image;
+                    }
+                    else if (heresy1.Source != null)
+                    {
+                        heresy1.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "heresy2":
+                    if (heresy2.Source == null)
+                    {
+                        heresy2.Source = player2.Image;
+                    }
+                    else if (heresy2.Source != null)
+                    {
+                        heresy2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "devil":
+                    if (devil.Source == null)
+                    {
+                        devil.Source = player2.Image;
+                    }
+                    else if (devil.Source != null)
+                    {
+                        devil.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "violence1":
+                    if (violence1.Source == null)
+                    {
+                        violence1.Source = player2.Image;
+                    }
+                    else if (violence1.Source != null)
+                    {
+                        violence1.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "violence2":
+                    if (violence2.Source == null)
+                    {
+                        violence2.Source = player2.Image;
+                    }
+                    else if (violence2.Source != null)
+                    {
+                        violence2.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "betrayal4":
+                    if (betrayal4.Source == null)
+                    {
+                        betrayal4.Source = player2.Image;
+                    }
+                    else if (betrayal4.Source != null)
+                    {
+                        betrayal4.Source = "player1andplayer2img.png";
+                    }
+                    break;
+                case "extortion1":
+                    if (extortion1.Source == null)
+                    {
+                        extortion1.Source = player2.Image;
+                    }
+                    else if (extortion1.Source != null)
+                    {
+                        extortion1.Source = "player1andplayer2img.png";
                     }
                     break;
             }
@@ -1172,53 +1277,53 @@ public partial class PlayPagePlayer : ContentPage
     }
     private void SetFields()
     {
-        BoardField field1 = new BoardField("field1", 1000000000, 6, 0);
-        BoardField field2 = new BoardField("field2", 50, 5, 0);
-        BoardField field3 = new BoardField("field3", 50, 4, 0);
-        BoardField field4 = new BoardField("field4", 150, 3, 0);
-        BoardField field5 = new BoardField("field5", 50, 2, 0);
-        BoardField field6 = new BoardField("field6", 50, 1, 0);
-        BoardField field7 = new BoardField("field7", 1000000000, 0, 0);
-        BoardField field8 = new BoardField("field8", 150, 0, 1);
-        BoardField field9 = new BoardField("field9", 150, 0, 2);
-        BoardField field10 = new BoardField("field10", 300, 0, 3);
-        BoardField field11 = new BoardField("field11", 150, 0, 4);
-        BoardField field12 = new BoardField("field12", 150, 0, 5);
-        BoardField field13 = new BoardField("field13", 1000000000, 0, 6);
-        BoardField field14 = new BoardField("field14", 300, 1, 6);
-        BoardField field15 = new BoardField("field15", 300, 2, 6);
-        BoardField field16 = new BoardField("field16", 500, 3, 6);
-        BoardField field17 = new BoardField("field17", 300, 4, 6);
-        BoardField field18 = new BoardField("field18", 300, 5, 6);
-        BoardField field19 = new BoardField("field19", 1000000000, 6, 6);
-        BoardField field20 = new BoardField("field20", 500, 6, 5);
-        BoardField field21 = new BoardField("field21", 500, 6, 4);
-        BoardField field22 = new BoardField("field22", 600, 6, 3);
-        BoardField field23 = new BoardField("field23", 500, 6, 2);
-        BoardField field24 = new BoardField("field24", 500, 6, 1);
-        fields[0] = field1;
-        fields[1] = field2;
-        fields[2] = field3;
-        fields[3] = field4;
-        fields[4] = field5;
-        fields[5] = field6;
-        fields[6] = field7;
-        fields[7] = field8;
-        fields[8] = field9;
-        fields[9] = field10;
-        fields[10] = field11;
-        fields[11] = field12;
-        fields[12] = field13;
-        fields[13] = field14;
-        fields[14] = field15;
-        fields[15] = field16;
-        fields[16] = field17;
-        fields[17] = field18;
-        fields[18] = field19;
-        fields[19] = field20;
-        fields[20] = field21;
-        fields[21] = field22;
-        fields[22] = field23;
-        fields[23] = field24;
+        BoardField Start = new BoardField("Start", 1000000000, 6, 0);
+        BoardField prison1 = new BoardField("prison1", 50, 5, 0);
+        BoardField prison2 = new BoardField("prison2", 50, 4, 0);
+        BoardField betrayal1 = new BoardField("betrayal1", 150, 3, 0);
+        BoardField desire1 = new BoardField("desire1", 50, 2, 0);
+        BoardField desire2 = new BoardField("desire2", 50, 1, 0);
+        BoardField cambions = new BoardField("cambions", 1000000000, 0, 0);
+        BoardField gluttony1 = new BoardField("gluttony1", 150, 0, 1);
+        BoardField gluttony2 = new BoardField("gluttony2", 150, 0, 2);
+        BoardField betrayal2 = new BoardField("betrayal2", 300, 0, 3);
+        BoardField greed1 = new BoardField("greed1", 150, 0, 4);
+        BoardField greed2 = new BoardField("greed2", 150, 0, 5);
+        BoardField wayToHeven = new BoardField("wayToHeven", 1000000000, 0, 6);
+        BoardField anger1 = new BoardField("anger1", 300, 1, 6);
+        BoardField anger2 = new BoardField("anger2", 300, 2, 6);
+        BoardField betrayal3 = new BoardField("betrayal3", 500, 3, 6);
+        BoardField heresy1 = new BoardField("heresy1", 300, 4, 6);
+        BoardField heresy2 = new BoardField("heresy2", 300, 5, 6);
+        BoardField devil = new BoardField("devil", 1000000000, 6, 6);
+        BoardField violence1 = new BoardField("violence1", 500, 6, 5);
+        BoardField violence2 = new BoardField("violence2", 500, 6, 4);
+        BoardField betrayal4 = new BoardField("betrayal4", 600, 6, 3);
+        BoardField extortion1 = new BoardField("extortion1", 500, 6, 2);
+        BoardField extortion2 = new BoardField("extortion2", 500, 6, 1);
+        fields[0] = Start;
+        fields[1] = prison1;
+        fields[2] = prison2;
+        fields[3] = betrayal1;
+        fields[4] = desire1;
+        fields[5] = desire2;
+        fields[6] = cambions;
+        fields[7] = gluttony1;
+        fields[8] = gluttony2;
+        fields[9] = betrayal2;
+        fields[10] = greed1;
+        fields[11] = greed2;
+        fields[12] = wayToHeven;
+        fields[13] = anger1;
+        fields[14] = anger2;
+        fields[15] = betrayal3;
+        fields[16] = heresy1;
+        fields[17] = heresy2;
+        fields[18] = devil;
+        fields[19] = violence1;
+        fields[20] = violence2;
+        fields[21] = betrayal4;
+        fields[22] = extortion1;
+        fields[23] = extortion2;
     }
 }

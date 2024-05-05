@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mauipoly.PlayPagePlayer"
+             x:Class="Mauipoly.PlayPageBot"
              BackgroundColor="#02161D"
              >
     <Grid>
@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Source="player1andplayer2img.png" BackgroundColor="CornflowerBlue" x:Name="Start" Grid.Row="6" Grid.Column="0"/>
+            <Image Source="player1andbotimg.png" BackgroundColor="CornflowerBlue" x:Name="Start" Grid.Row="6" Grid.Column="0"/>
 
             <Image BackgroundColor="#965339" x:Name="prison1" Grid.Row="5" Grid.Column="0"/>
             <Image BackgroundColor="#965339" x:Name="prison2" Grid.Row="4" Grid.Column="0"/>
@@ -78,7 +78,7 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image x:Name="PlayerImage" Source="player1icon.png" Grid.Column="1"/>
+            <Image x:Name="PlayerImage" Source="player1img.png" Grid.Column="1"/>
             <StackLayout Grid.Column="0">
                 <Label x:Name="PlayerValues" HorizontalTextAlignment="Center" TextColor="White"></Label>
             </StackLayout>

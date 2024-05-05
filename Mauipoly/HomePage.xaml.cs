@@ -22,6 +22,7 @@ public partial class HomePage : ContentPage
         Music.Pause();
         Application.Current.Quit();
 
+
     }
 
     private void btnInfo_Clicked(object sender, EventArgs e)
@@ -33,4 +34,5 @@ public partial class HomePage : ContentPage
     {
         Controls.ToggleFullScreenStatus();
     }
+
 }

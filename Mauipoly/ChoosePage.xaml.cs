@@ -1,5 +1,4 @@
 namespace Mauipoly;
-using MauiPageFullScreen;
 
 public partial class ChoosePage : ContentPage
 {
@@ -15,7 +14,7 @@ public partial class ChoosePage : ContentPage
     private void btnPlayWithBot_Clicked(object sender, EventArgs e)
     {
        
-       // Navigation.PushAsync(new PlayPageBot());
+       Navigation.PushAsync(new PlayPageBot());
 
 
     }
