@@ -1,31 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mauipoly.InfoPage">
-    <!--<VerticalStackLayout>
-        <CarouselView>
-            <CarouselView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Item 1</x:String>
-                    <x:String>Item 2</x:String>
-                    <x:String>Item 3</x:String>
-                    <x:String>Item 4</x:String>
-                    <x:String>Item 5</x:String>
-                </x:Array>
-            </CarouselView.ItemsSource>
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <VerticalStackLayout BackgroundColor="#E0E4FF" Padding="10">
-                        <Label FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Text="{Binding .}"></Label>
-                    </VerticalStackLayout>    
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-        </CarouselView>
-    </VerticalStackLayout>-->
+             x:Class="Mauipoly.InfoPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#02161D"
+             >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"></ColumnDefinition>
@@ -33,14 +17,14 @@
         </Grid.ColumnDefinitions>
         <Image Source="infotest.png" Grid.RowSpan="2"></Image>
         <StackLayout Grid.Column="1" Grid.Row="0">
-            <Label Text="How to Play" FontSize="Medium"></Label>
-            <Label>
+            <Label Text="How to Play" FontSize="Medium" TextColor="White"></Label>
+            <Label TextColor="White">
                 When it's your turn, you roll the dice (2 × 4) by pressing the ThrowBtn button, then if you want, you can buy the field by clicking the BuyField button, if not, you end the turn by clicking the EndTurn button. 
                 The game ends when one player loses all his money.</Label>
         </StackLayout>
         <StackLayout Grid.Column="1" Grid.Row="1">
-            <Label Text="Explanation of numbers" FontSize="Medium"></Label>
-            <Label>1. This is the indicator that shows which player turn it is 
+            <Label Text="Explanation of numbers" FontSize="Medium" TextColor="White"></Label>
+            <Label TextColor="White">1. This is the indicator that shows which player turn it is 
                 2. This is an indicator that shows the player's money balance
                 3. This is the Player Icon
                 4. This is the dice roll button (2x4)
@@ -53,7 +37,8 @@
                 11. This field costs 300
                 12. This field costs 500
             </Label>
+            
         </StackLayout>
-        
+        <Button Clicked="btnExit_Clicked" Text="Exit" Grid.Row="2" Grid.Column="1" WidthRequest="100" HeightRequest="30" BackgroundColor="#960E02" TextColor="White"></Button>
     </Grid>
 </ContentPage>

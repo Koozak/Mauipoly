@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mauipoly.PlayPagePlayer">
+             x:Class="Mauipoly.PlayPagePlayer"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#02161D"
+             >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -67,7 +70,7 @@
 
 
         </Grid>
-        <Label x:Name="LabeLWithPlayerName" Grid.Column="1" Grid.Row="0" FontSize="30" HorizontalTextAlignment="Center"></Label>
+        <Label x:Name="LabeLWithPlayerName" Grid.Column="1" Grid.Row="0" FontSize="30" HorizontalTextAlignment="Center" TextColor="White"></Label>
         <Grid  Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -78,13 +81,13 @@
             </Grid.ColumnDefinitions>
             <Image x:Name="PlayerImage" Source="player1icon.png" Grid.Column="1"/>
             <StackLayout Grid.Column="0">
-                <Label x:Name="PlayerValues" HorizontalTextAlignment="Center"></Label>
+                <Label x:Name="PlayerValues" HorizontalTextAlignment="Center" TextColor="White"></Label>
             </StackLayout>
         </Grid>
         <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
-            <Button x:Name="ThrowBtn" Text="Throw dice" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Throw_Clicked"></Button>
-            <Button x:Name="EndTurn" Text="End turn" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_EndTurn_Clicked"></Button>
-            <Button x:Name="BuyField" Text="Buy Field" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_BuyField_Clicked"></Button>
+            <Button x:Name="ThrowBtn" Text="Throw dice" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Throw_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
+            <Button x:Name="EndTurn" Text="End turn" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_EndTurn_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
+            <Button x:Name="BuyField" Text="Buy Field" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_BuyField_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
         </StackLayout>
     </Grid>
 </ContentPage>

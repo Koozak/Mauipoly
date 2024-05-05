@@ -1,37 +1,45 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mauipoly.HomePage">
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Mauipoly.HomePage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#02161D">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Text="Mauipoly"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-               Margin="10" 
-               FontSize="60"
-               FontAttributes="Bold"/>
+        <Image Source="nameofapp.jpg">
+            
+        </Image>
         <StackLayout Grid.Row="1">
 
             <Button x:Name="btnPlay"
                 Text="Play"
                 Clicked="btnPlay_Clicked"
                 Margin="10"
-                MaximumWidthRequest="450"/>
+                MaximumWidthRequest="450"
+                TextColor="White"
+                BackgroundColor="#960E02"/>
             <Button x:Name="btnExit"
                 Text="Exit"
                 Clicked="btnExit_Clicked"
                 Margin="10" 
-                MaximumWidthRequest="450"/>
+                MaximumWidthRequest="450"
+                TextColor="White"
+                BackgroundColor="#960E02"/>
             <ImageButton x:Name="btnInfo"
                 Source="infoimg.png"
                 Clicked="btnInfo_Clicked"
                 Margin="10"                     
                 WidthRequest="40"
                 HeightRequest="40"
+                BackgroundColor="#960E02"
             />
+            <toolkit:MediaElement x:Name="Music" WidthRequest="500" HeightRequest="100" Source="C:\Users\Niko\Downloads\Cacophony%20of%20Despair%20ext%20v1.1.2.2.1.1.2.mp3" ShouldAutoPlay="True" ShouldLoopPlayback="True">
+                
+            </toolkit:MediaElement>
         </StackLayout>
 
     </Grid>

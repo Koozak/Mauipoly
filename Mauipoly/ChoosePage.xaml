@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mauipoly.ChoosePage">
+             x:Class="Mauipoly.ChoosePage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#02161D"
+             >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -12,19 +15,24 @@
                HorizontalOptions="Center"
                Margin="10" 
                FontSize="30"
-               FontAttributes="Bold"/>
+               FontAttributes="Bold"
+               TextColor="White"/>
         <StackLayout Grid.Row="1">
 
             <Button x:Name="btnPlayWithPlayer"
                 Text="Play with player"
                 Clicked="btnPlayWithPlayer_Clicked"
                 Margin="10"
-                MaximumWidthRequest="450"/>
+                MaximumWidthRequest="450"
+                BackgroundColor="#960E02"
+                TextColor="White"/>
             <Button x:Name="btnPlayWithBot"
                 Text="Play with bot"
                 Clicked="btnPlayWithBot_Clicked"
                 Margin="10" 
-                MaximumWidthRequest="450"/>
+                MaximumWidthRequest="450"
+                BackgroundColor="#960E02"
+                TextColor="White"/>
         </StackLayout>
     </Grid>
 </ContentPage>
