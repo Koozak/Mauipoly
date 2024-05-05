@@ -1,3 +1,5 @@
+using MauiPageFullScreen;
+
 namespace Mauipoly;
 
 public partial class HomePage : ContentPage
@@ -13,6 +15,7 @@ public partial class HomePage : ContentPage
     {
         Music.Play();
         Navigation.PushAsync(new ChoosePage());
+
     }
     private void btnExit_Clicked(object sender, EventArgs e)
     {
@@ -25,5 +28,9 @@ public partial class HomePage : ContentPage
     {
         Music.Play();
         Navigation.PushAsync(new InfoPage());
+    }
+    private void btnFullscreen_Clicked(object sender, EventArgs e)
+    {
+        Controls.ToggleFullScreenStatus();
     }
 }

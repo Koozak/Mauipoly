@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using MauiPageFullScreen;
 using Microsoft.Extensions.Logging;
 
 namespace Mauipoly
@@ -11,6 +12,7 @@ namespace Mauipoly
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkitMediaElement()
+                .UseFullScreen()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

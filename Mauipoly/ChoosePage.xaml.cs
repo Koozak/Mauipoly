@@ -1,11 +1,13 @@
 namespace Mauipoly;
+using MauiPageFullScreen;
 
 public partial class ChoosePage : ContentPage
 {
 	public ChoosePage()
 	{
-		InitializeComponent();
-	}
+        InitializeComponent();
+
+    }
     private void btnPlayWithPlayer_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new PlayPagePlayer());
@@ -16,5 +18,9 @@ public partial class ChoosePage : ContentPage
        // Navigation.PushAsync(new PlayPageBot());
 
 
+    }
+    private void btnBack_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PopAsync();
     }
 }
