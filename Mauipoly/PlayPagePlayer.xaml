@@ -81,6 +81,10 @@
                 <Label x:Name="PlayerValues" HorizontalTextAlignment="Center"></Label>
             </StackLayout>
         </Grid>
-        <Button x:Name="ThrowBtn" Grid.Row="2" Grid.Column="1" Text="Throw dice" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Throw_Clicked"></Button>
+        <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <Button x:Name="ThrowBtn" Text="Throw dice" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Throw_Clicked"></Button>
+            <Button x:Name="EndTurn" Text="End turn" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_EndTurn_Clicked"></Button>
+            <Button x:Name="BuyField" Text="Buy Field" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_BuyField_Clicked"></Button>
+        </StackLayout>
     </Grid>
 </ContentPage>

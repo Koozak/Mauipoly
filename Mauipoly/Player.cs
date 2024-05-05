@@ -12,7 +12,7 @@
         public Player(string nickname, bool turn, string image)
         {
             Nickname = nickname;
-            Money = 2000;
+            Money = 1000;
             isTurn = turn;
             Location = "6:0";
             Image = image;

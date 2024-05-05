@@ -19,12 +19,19 @@
                 Text="Play"
                 Clicked="btnPlay_Clicked"
                 Margin="10"
-                MaximumWidthRequest="450"/>            
+                MaximumWidthRequest="450"/>
             <Button x:Name="btnExit"
                 Text="Exit"
                 Clicked="btnExit_Clicked"
                 Margin="10" 
                 MaximumWidthRequest="450"/>
+            <ImageButton x:Name="btnInfo"
+                Source="infoimg.png"
+                Clicked="btnInfo_Clicked"
+                Margin="10"                     
+                WidthRequest="40"
+                HeightRequest="40"
+            />
         </StackLayout>
 
     </Grid>

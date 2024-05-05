@@ -16,4 +16,9 @@ public partial class HomePage : ContentPage
     {
         
     }
+
+    private void btnInfo_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new InfoPage());
+    }
 }

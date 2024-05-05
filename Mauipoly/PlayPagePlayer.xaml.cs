@@ -5,6 +5,7 @@ namespace Mauipoly;
 
 public partial class PlayPagePlayer : ContentPage
 {
+    int global = 0;
     Random rnd = new Random();
     Random rnd1 = new Random();
     Random rnd2 = new Random();
@@ -38,7 +39,7 @@ public partial class PlayPagePlayer : ContentPage
         }
     }
 
-    private async void Btn_Throw_Clicked(object sender, EventArgs e)
+    private void Btn_Throw_Clicked(object sender, EventArgs e)
     {
         if (player1.isTurn == true)
         {
@@ -46,13 +47,35 @@ public partial class PlayPagePlayer : ContentPage
             ThrowBtn.Opacity = 0.5;
             ThrowBtn.IsEnabled = false;
             Moving(value);
-            ThrowBtn.Opacity = 1;
-            ThrowBtn.IsEnabled = true;
-            player1.isTurn = false;
-            player2.isTurn = true;
-            test(fields, player1, xdplayer1);
             ShowingStats(player1);
+            foreach (var item in player2.BoardFieldList)
+            {
+                if (item != null && item.Name == fields[xdplayer1].Name)
+                {
+                    DisplayAlert("Alert!", "You step on enemy field that will by cost " + fields[xdplayer1].HowMuchForField, "OK");
+                    if (player1.Money - fields[xdplayer1].HowMuchForField <= 0)
+                    {
+                        DisplayAlert("End Game", "Player 2 won", "OK");
+                        ThrowBtn.Opacity = 0.5;
+                        ThrowBtn.IsEnabled = false;
+                        EndTurn.Opacity = 0.5;
+                        EndTurn.IsEnabled = false;
+                        BuyField.Opacity = 0.5;
+                        BuyField.IsEnabled = false;
+                    }
+                    else
+                    {
+                        player1.Money -= fields[xdplayer1].HowMuchForField;
+                        player2.Money += fields[xdplayer1].HowMuchForField;
+                    }
 
+                    break;
+                }
+                else
+                {
+
+                }
+            }
         }
         else
         {
@@ -60,16 +83,73 @@ public partial class PlayPagePlayer : ContentPage
             ThrowBtn.Opacity = 0.5;
             ThrowBtn.IsEnabled = false;
             Moving(value);
+            ShowingStats(player2);
+            foreach (var item in player1.BoardFieldList)
+            {
+                if (item != null && item.Name == fields[xdplayer2].Name)
+                {
+                    DisplayAlert("Alert!", "You step on enemy field that will by cost " + fields[xdplayer2].HowMuchForField, "OK");
+                    if(player2.Money-fields[xdplayer2].HowMuchForField <= 0) 
+                    {
+                        DisplayAlert("End Game", "Player 1 won", "OK");
+                        ThrowBtn.Opacity = 0.5;
+                        ThrowBtn.IsEnabled = false;
+                        EndTurn.Opacity = 0.5;
+                        EndTurn.IsEnabled = false;
+                        BuyField.Opacity = 0.5;
+                        BuyField.IsEnabled = false;
+                    }
+                    else
+                    {
+                        player2.Money -= fields[xdplayer2].HowMuchForField;
+                        player1.Money += fields[xdplayer2].HowMuchForField;
+                    }
+                    break;
+                }
+                else
+                {
+
+                }
+            }
+        }
+    }
+    private void Btn_EndTurn_Clicked(object sender, EventArgs e)
+    {
+        if (player1.isTurn == true)
+        {
+            ThrowBtn.Opacity = 1;
+            ThrowBtn.IsEnabled = true;
+            player1.isTurn = false;
+            player2.isTurn = true;
+            ShowingStats(player2);
+            BuyField.Opacity = 1;
+            BuyField.IsEnabled = true;
+        }
+        else
+        {
             ThrowBtn.Opacity = 1;
             ThrowBtn.IsEnabled = true;
             player2.isTurn = false;
             player1.isTurn = true;
-            test(fields, player2, xdplayer2);
-            ShowingStats(player2);
+            ShowingStats(player1);
+            BuyField.Opacity = 1;
+            BuyField.IsEnabled = true;
+        }
+    }
+    private void Btn_BuyField_Clicked(object sender, EventArgs e)
+    {
+        if (player1.isTurn == true)
+        {
+                buyingFields(fields, player1, xdplayer1);
+
+        } 
+        else 
+        {
+                buyingFields(fields, player2, xdplayer2);
 
         }
     }
-    private async void test(BoardField[] field, Player player, int id)
+    private async void buyingFields(BoardField[] field, Player player, int id)
     {
         if (id >= 23)
         {
@@ -82,13 +162,16 @@ public partial class PlayPagePlayer : ContentPage
                 bool answer = await DisplayAlert("Question?", "Would you like to buy this field. The cost of this file is " + field[id].HowMuchForField.ToString(), "Yes", "No");
                 if (answer == true)
                 {
-                    if ((player.Money - field[id].HowMuchForField) < 0)
+                    if ((player.Money - field[id].HowMuchForField) <= 0)
                     {
                         await DisplayAlert("Alert!", "You dont have enough", "OK");
                     }
                     else
                     {
                         player.Money = player.Money - field[id].HowMuchForField;
+                        field[id].Occupied = true;
+                        player.BoardFieldList[global] = field[id];
+                        global++;
                         ShowingStats(player);
                     }
                 }
@@ -101,14 +184,26 @@ public partial class PlayPagePlayer : ContentPage
         }
         else
         {
-            await DisplayAlert("Alert!", "It is occupied", "OK");
+            await DisplayAlert("Alert!", "It is occupied by "+player.Nickname, "OK");
         }
     }
     private void ShowingStats(Player player)
     {
         LabeLWithPlayerName.Text = player.Nickname + " Turn";
         PlayerImage.Source = player.Image;
-        PlayerValues.Text = "Your Money is " + player.Money.ToString();
+        PlayerValues.Text = "Your Money is " + player.Money.ToString()+"     ";
+        foreach (var item in player.BoardFieldList)
+        {
+            if (item == null)
+            {
+
+            }
+            else
+            {
+                PlayerValues.Text += item.Name.ToString()+",";
+            }
+            
+        }
 
     }
     private void Moving(int r)
@@ -118,7 +213,7 @@ public partial class PlayPagePlayer : ContentPage
             switch (fields[xdplayer1].Name)
             {
                 case "field1":
-                    if (field1.Source!=null && field1.Source.ToString() == "player1andplayer2img.png")
+                    if (field1.Source!=null && field1.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field1.Source = player2.Image;
                     }
@@ -129,7 +224,7 @@ public partial class PlayPagePlayer : ContentPage
                     break;
 
                 case "field2":
-                    if (field2.Source.ToString() == "player1andplayer2img.png")
+                    if (field2.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field2.Source = player2.Image;
                     }
@@ -140,7 +235,7 @@ public partial class PlayPagePlayer : ContentPage
                     break;
 
                 case "field3":
-                    if (field3.ToString() == "player1andplayer2img.png")
+                    if (field3.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field3.Source = player2.Image;
                     }
@@ -150,7 +245,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field4":
-                    if (field4.ToString() == "player1andplayer2img.png")
+                    if (field4.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field4.Source = player2.Image;
                     }
@@ -160,7 +255,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field5":
-                    if (field5.ToString() == "player1andplayer2img.png")
+                    if (field5.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field5.Source = player2.Image;
                     }
@@ -170,7 +265,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field6":
-                    if (field6.ToString() == "player1andplayer2img.png")
+                    if (field6.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field6.Source = player2.Image;
                     }
@@ -180,7 +275,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field7":
-                    if (field7.ToString() == "player1andplayer2img.png")
+                    if (field7.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field7.Source = player2.Image;
                     }
@@ -190,7 +285,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field8":
-                    if (field8.ToString() == "player1andplayer2img.png")
+                    if (field8.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field8.Source = player2.Image;
                     }
@@ -200,7 +295,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field9":
-                    if (field9.ToString() == "player1andplayer2img.png")
+                    if (field9.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field9.Source = player2.Image;
                     }
@@ -210,7 +305,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field10":
-                    if (field10.ToString() == "player1andplayer2img.png")
+                    if (field10.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field10.Source = player2.Image;
                     }
@@ -220,7 +315,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field11":
-                    if (field11.ToString() == "player1andplayer2img.png")
+                    if (field11.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field11.Source = player2.Image;
                     }
@@ -230,7 +325,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field12":
-                    if (field12.ToString() == "player1andplayer2img.png")
+                    if (field12.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field12.Source = player2.Image;
                     }
@@ -240,7 +335,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field13":
-                    if (field13.ToString() == "player1andplayer2img.png")
+                    if (field13.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field13.Source = player2.Image;
                     }
@@ -250,7 +345,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field14":
-                    if (field14.ToString() == "player1andplayer2img.png")
+                    if (field14.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field14.Source = player2.Image;
                     }
@@ -260,7 +355,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field15":
-                    if (field15.ToString() == "player1andplayer2img.png")
+                    if (field15.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field15.Source = player2.Image;
                     }
@@ -270,7 +365,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field16":
-                    if (field16.ToString() == "player1andplayer2img.png")
+                    if (field16.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field16.Source = player2.Image;
                     }
@@ -280,7 +375,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field17":
-                    if (field17.ToString() == "player1andplayer2img.png")
+                    if (field17.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field17.Source = player2.Image;
                     }
@@ -290,7 +385,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field18":
-                    if (field18.ToString() == "player1andplayer2img.png")
+                    if (field18.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field18.Source = player2.Image;
                     }
@@ -300,7 +395,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field19":
-                    if (field19.ToString() == "player1andplayer2img.png")
+                    if (field19.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field19.Source = player2.Image;
                     }
@@ -310,7 +405,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field20":
-                    if (field20.ToString() == "player1andplayer2img.png")
+                    if (field20.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field20.Source = player2.Image;
                     }
@@ -320,7 +415,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field21":
-                    if (field21.ToString() == "player1andplayer2img.png")
+                    if (field21.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field21.Source = player2.Image;
                     }
@@ -330,7 +425,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field22":
-                    if (field22.ToString() == "player1andplayer2img.png")
+                    if (field22.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field22.Source = player2.Image;
                     }
@@ -340,7 +435,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field23":
-                    if (field23.ToString() == "player1andplayer2img.png")
+                    if (field23.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field23.Source = player2.Image;
                     }
@@ -598,7 +693,7 @@ public partial class PlayPagePlayer : ContentPage
             switch (fields[xdplayer2].Name)
             {
                 case "field1":
-                    if (field1.Source!=null && field1.Source.ToString() == "player1andplayer2img.png")
+                    if (field1.Source!=null && field1.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field1.Source = player1.Image;
                     }
@@ -609,7 +704,7 @@ public partial class PlayPagePlayer : ContentPage
                     break;
 
                 case "field2":
-                    if (field2.Source.ToString() == "player1andplayer2img.png")
+                    if (field2.Source != null && field2.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field2.Source = player1.Image;
                     }
@@ -620,7 +715,7 @@ public partial class PlayPagePlayer : ContentPage
                     break;
 
                 case "field3":
-                    if (field3.ToString() == "player1andplayer2img.png")
+                    if (field3.Source != null && field3.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field3.Source = player1.Image;
                     }
@@ -630,7 +725,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field4":
-                    if (field4.ToString() == "player1andplayer2img.png")
+                    if (field4.Source != null && field4.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field4.Source = player1.Image;
                     }
@@ -640,7 +735,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field5":
-                    if (field5.ToString() == "player1andplayer2img.png")
+                    if (field5.Source != null && field5.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field5.Source = player1.Image;
                     }
@@ -650,7 +745,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field6":
-                    if (field6.ToString() == "player1andplayer2img.png")
+                    if (field6.Source != null && field6.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field6.Source = player1.Image;
                     }
@@ -660,7 +755,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field7":
-                    if (field7.ToString() == "player1andplayer2img.png")
+                    if (field7.Source != null && field7.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field7.Source = player1.Image;
                     }
@@ -670,7 +765,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field8":
-                    if (field8.ToString() == "player1andplayer2img.png")
+                    if (field8.Source != null && field8.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field8.Source = player1.Image;
                     }
@@ -680,7 +775,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field9":
-                    if (field9.ToString() == "player1andplayer2img.png")
+                    if (field9.Source != null && field9.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field9.Source = player1.Image;
                     }
@@ -690,7 +785,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field10":
-                    if (field10.ToString() == "player1andplayer2img.png")
+                    if (field10.Source != null && field10.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field10.Source = player1.Image;
                     }
@@ -700,7 +795,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field11":
-                    if (field11.ToString() == "player1andplayer2img.png")
+                    if (field11.Source != null && field11.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field11.Source = player1.Image;
                     }
@@ -710,7 +805,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field12":
-                    if (field12.ToString() == "player1andplayer2img.png")
+                    if (field12.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field12.Source = player1.Image;
                     }
@@ -720,7 +815,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field13":
-                    if (field13.ToString() == "player1andplayer2img.png")
+                    if (field13.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field13.Source = player1.Image;
                     }
@@ -730,7 +825,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field14":
-                    if (field14.ToString() == "player1andplayer2img.png")
+                    if (field14.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field14.Source = player1.Image;
                     }
@@ -740,7 +835,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field15":
-                    if (field15.ToString() == "player1andplayer2img.png")
+                    if (field15.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field15.Source = player1.Image;
                     }
@@ -750,7 +845,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field16":
-                    if (field16.ToString() == "player1andplayer2img.png")
+                    if (field16.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field16.Source = player1.Image;
                     }
@@ -760,7 +855,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field17":
-                    if (field17.ToString() == "player1andplayer2img.png")
+                    if (field17.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field17.Source = player1.Image;
                     }
@@ -770,7 +865,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field18":
-                    if (field18.ToString() == "player1andplayer2img.png")
+                    if (field18.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field18.Source = player1.Image;
                     }
@@ -780,7 +875,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field19":
-                    if (field19.ToString() == "player1andplayer2img.png")
+                    if (field19.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field19.Source = player1.Image;
                     }
@@ -790,7 +885,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field20":
-                    if (field20.ToString() == "player1andplayer2img.png")
+                    if (field20.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field20.Source = player1.Image;
                     }
@@ -800,7 +895,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field21":
-                    if (field21.ToString() == "player1andplayer2img.png")
+                    if (field21.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field21.Source = player1.Image;
                     }
@@ -810,7 +905,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field22":
-                    if (field22.ToString() == "player1andplayer2img.png")
+                    if (field22.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field22.Source = player1.Image;
                     }
@@ -820,7 +915,7 @@ public partial class PlayPagePlayer : ContentPage
                     }
                     break;
                 case "field23":
-                    if (field23.ToString() == "player1andplayer2img.png")
+                    if (field23.Source.ToString() == "File: player1andplayer2img.png")
                     {
                         field23.Source = player1.Image;
                     }
