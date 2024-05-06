@@ -67,6 +67,7 @@ public partial class PlayPagePlayer : ContentPage
                 if (item != null && item.Name == fields[xdplayer1].Name)
                 {
                     DisplayAlert("Alert!", "You step on enemy field that will by cost " + fields[xdplayer1].HowMuchForField, "OK");
+                    ShowingStats(player1);
                     if (player1.Money - fields[xdplayer1].HowMuchForField <= 0)
                     {
                         DisplayAlert("End Game", "Player 2 won", "OK");
@@ -103,6 +104,7 @@ public partial class PlayPagePlayer : ContentPage
                 if (item != null && item.Name == fields[xdplayer2].Name)
                 {
                     DisplayAlert("Alert!", "You step on enemy field that will by cost " + fields[xdplayer2].HowMuchForField, "OK");
+                    ShowingStats(player2);
                     if(player2.Money-fields[xdplayer2].HowMuchForField <= 0) 
                     {
                         DisplayAlert("End Game", "Player 1 won", "OK");
