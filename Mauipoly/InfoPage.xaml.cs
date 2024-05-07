@@ -10,7 +10,7 @@ public partial class InfoPage : ContentPage
 		InitializeComponent();
     }
 
-    private void btnExit_Clicked(object sender, EventArgs e)
+    private void btnBack_Clicked(object sender, EventArgs e)
     {
         Navigation.PopAsync();
     }

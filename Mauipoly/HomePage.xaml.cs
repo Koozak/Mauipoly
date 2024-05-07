@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui.Views;
 using MauiPageFullScreen;
 
 namespace Mauipoly;
@@ -8,31 +9,19 @@ public partial class HomePage : ContentPage
 	{
 		InitializeComponent();
         Music.IsVisible = false;
-        Music.Volume = 0.25;
-
+        Music.Volume = 0.2;
     }
     private void btnPlay_Clicked(object sender, EventArgs e)
     {
-        Music.Play();
         Navigation.PushAsync(new ChoosePage());
-
+        Music.Play();
     }
     private void btnExit_Clicked(object sender, EventArgs e)
     {
-        Music.Pause();
         Application.Current.Quit();
-
-
     }
-
-    private void btnInfo_Clicked(object sender, EventArgs e)
+    private void btnSettings_Clicked(object sender, EventArgs e)
     {
-        Music.Play();
-        Navigation.PushAsync(new InfoPage());
+        Navigation.PushAsync(new SettingsPage());
     }
-    private void btnFullscreen_Clicked(object sender, EventArgs e)
-    {
-        Controls.ToggleFullScreenStatus();
-    }
-
 }

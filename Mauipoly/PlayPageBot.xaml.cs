@@ -15,14 +15,14 @@ public partial class PlayPageBot : ContentPage
     public PlayPageBot()
     {
         InitializeComponent();
-        Whose_Turn(player, bot);
         SetFields();
+        Whose_Turn(player, bot);
     }
     private void Btn_Fullscreen_Clicked(object sender, EventArgs e)
     {
         Controls.ToggleFullScreenStatus();
     }
-    private void Whose_Turn(Player one, Bot two)
+    private async void Whose_Turn(Player one, Bot two)
     {
         int value = rnd.Next(1, 3);
         if (value == 1)
@@ -34,6 +34,13 @@ public partial class PlayPageBot : ContentPage
         {
             two.isTurn = true;
             ShowingStats(two);
+            int value2 = rnd1.Next(1, 5) + rnd2.Next(1, 5); 
+            await Task.Delay(1000);
+            Moving(value2);
+            bot.isTurn = false;
+            player.isTurn = true;
+            await Task.Delay(1000);
+            ShowingStats(player);
         }
     }
     private void ShowingStats(Player player)

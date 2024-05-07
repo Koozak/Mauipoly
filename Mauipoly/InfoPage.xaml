@@ -37,6 +37,6 @@
             </StackLayout>
 
         </ScrollView>
-        <Button Clicked="btnExit_Clicked" Text="Exit" Grid.Row="2" Grid.Column="1" WidthRequest="100" HeightRequest="30" BackgroundColor="#960E02" TextColor="White"></Button>
+        <Button Clicked="btnBack_Clicked" Text="Back" Grid.Row="2" Grid.Column="1" WidthRequest="100" HeightRequest="30" BackgroundColor="#960E02" TextColor="White"></Button>
     </Grid>
 </ContentPage>
