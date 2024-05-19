@@ -72,6 +72,12 @@
 	  <MauiXaml Update="InfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="InfoPlayBot.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="InfoPlayPlayer.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PlayPageBot.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

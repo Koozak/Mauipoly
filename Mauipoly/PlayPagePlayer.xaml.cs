@@ -34,9 +34,9 @@ public partial class PlayPagePlayer : ContentPage
 
     }
 
-    private void Btn_Fullscreen_Clicked(object sender, EventArgs e)
+    private void Btn_Settings_Clicked(object sender, EventArgs e)
     {
-        Controls.ToggleFullScreenStatus();
+        Navigation.PushAsync(new SettingsPage());
     }
     private void Whose_Turn(Player one, Player two)
     {
@@ -66,7 +66,7 @@ public partial class PlayPagePlayer : ContentPage
             {
                 if (item != null && item.Name == fields[xdplayer1].Name)
                 {
-                    DisplayAlert("Alert!", "You step on enemy field that will by cost " + fields[xdplayer1].HowMuchForField, "OK");
+                    DisplayAlert("Enemy Field!", "You step on enemy field that will by cost " + fields[xdplayer1].HowMuchForField, "OK");
                     ShowingStats(player1);
                     if (player1.Money - fields[xdplayer1].HowMuchForField <= 0)
                     {
@@ -103,7 +103,7 @@ public partial class PlayPagePlayer : ContentPage
             {
                 if (item != null && item.Name == fields[xdplayer2].Name)
                 {
-                    DisplayAlert("Alert!", "You step on enemy field that will by cost " + fields[xdplayer2].HowMuchForField, "OK");
+                    DisplayAlert("Enemy Field!", "You step on enemy field that will by cost " + fields[xdplayer2].HowMuchForField, "OK");
                     ShowingStats(player2);
                     if(player2.Money-fields[xdplayer2].HowMuchForField <= 0) 
                     {

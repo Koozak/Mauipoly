@@ -14,4 +14,14 @@ public partial class InfoPage : ContentPage
     {
         Navigation.PopAsync();
     }
+
+    private void btnHowToPlayWithPlayer_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new InfoPlayPlayer());
+    }
+
+    private void btnHowToPlayWithBot_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new InfoPlayBot());
+    }
 }

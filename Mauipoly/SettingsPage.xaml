@@ -26,9 +26,18 @@
                     TextColor="White"
                     BackgroundColor="#960E02"/>
             </StackLayout>
+            <Label TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center">Back</Label>
             <Button x:Name="btnBack"
                     Text="Back"
                     Clicked="btnBack_Clicked"
+                    Margin="10" 
+                    MaximumWidthRequest="450"
+                    TextColor="White"
+                    BackgroundColor="#960E02"/>
+            <Label TextColor="White" FontSize="Medium" HorizontalTextAlignment="Center">EXIT Game</Label>
+                <Button x:Name="btnExit"
+                    Text="Exit the Game"
+                    Clicked="btnExit_Clicked"
                     Margin="10" 
                     MaximumWidthRequest="450"
                     TextColor="White"

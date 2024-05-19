@@ -33,38 +33,37 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Image Source="player1andbotimg.png" BackgroundColor="CornflowerBlue" x:Name="Start" Grid.Row="6" Grid.Column="0"/>
+            <Image Source="player1andbotimg.png" BackgroundColor="#98000e" x:Name="Start" Grid.Row="6" Grid.Column="0"/>
 
-            <Image BackgroundColor="#965339" x:Name="prison1" Grid.Row="5" Grid.Column="0"/>
-            <Image BackgroundColor="#965339" x:Name="prison2" Grid.Row="4" Grid.Column="0"/>
+            <Image BackgroundColor="#47a7b5" x:Name="prison1" Grid.Row="5" Grid.Column="0"/>
+            <Image BackgroundColor="#47a7b5" x:Name="prison2" Grid.Row="4" Grid.Column="0"/>
             <Image BackgroundColor="#000000" x:Name="betrayal1" Grid.Row="3" Grid.Column="0"/>
-            <Image BackgroundColor="#ACE3FF" x:Name="desire1" Grid.Row="2" Grid.Column="0"/>
-            <Image BackgroundColor="#ACE3FF" x:Name="desire2" Grid.Row="1" Grid.Column="0"/>
+            <Image BackgroundColor="#65be41" x:Name="desire1" Grid.Row="2" Grid.Column="0"/>
+            <Image BackgroundColor="#65be41" x:Name="desire2" Grid.Row="1" Grid.Column="0"/>
 
-            <Image BackgroundColor="CornflowerBlue" x:Name="cambions" Grid.Row="0" Grid.Column="0"/>
+            <Image BackgroundColor="#98000e" x:Name="cambions" Grid.Row="0" Grid.Column="0"/>
 
-            <Image BackgroundColor="#DD3897" x:Name="gluttony1" Grid.Row="0" Grid.Column="1"/>
-            <Image BackgroundColor="#DD3897" x:Name="gluttony2" Grid.Row="0" Grid.Column="2"/>
+            <Image BackgroundColor="#ab44d3" x:Name="gluttony1" Grid.Row="0" Grid.Column="1"/>
+            <Image BackgroundColor="#ab44d3" x:Name="gluttony2" Grid.Row="0" Grid.Column="2"/>
             <Image BackgroundColor="#000000" x:Name="betrayal2" Grid.Row="0" Grid.Column="3"/>
-            <Image BackgroundColor="#F98F2B" x:Name="greed1" Grid.Row="0" Grid.Column="4"/>
-            <Image BackgroundColor="#F98F2B" x:Name="greed2" Grid.Row="0" Grid.Column="5"/>
+            <Image BackgroundColor="#ff6728" x:Name="greed1" Grid.Row="0" Grid.Column="4"/>
+            <Image BackgroundColor="#ff6728" x:Name="greed2" Grid.Row="0" Grid.Column="5"/>
 
-            <Image BackgroundColor="CornflowerBlue" x:Name="wayToHeven" Grid.Row="0" Grid.Column="6"/>
+            <Image BackgroundColor="#98000e" x:Name="wayToHeven" Grid.Row="0" Grid.Column="6"/>
 
-            <Image BackgroundColor="#EF161F" x:Name="anger1" Grid.Row="1" Grid.Column="6"/>
-            <Image BackgroundColor="#EF161F" x:Name="anger2" Grid.Row="2" Grid.Column="6"/>
+            <Image BackgroundColor="#0076B6" x:Name="anger1" Grid.Row="1" Grid.Column="6"/>
+            <Image BackgroundColor="#0076B6" x:Name="anger2" Grid.Row="2" Grid.Column="6"/>
             <Image BackgroundColor="#000000" x:Name="betrayal3" Grid.Row="3" Grid.Column="6"/>
-            <Image BackgroundColor="#FEF300" x:Name="heresy1" Grid.Row="4" Grid.Column="6"/>
-            <Image BackgroundColor="#FEF300" x:Name="heresy2" Grid.Row="5" Grid.Column="6"/>
+            <Image BackgroundColor="#EF161F" x:Name="heresy1" Grid.Row="4" Grid.Column="6"/>
+            <Image BackgroundColor="#EF161F" x:Name="heresy2" Grid.Row="5" Grid.Column="6"/>
 
-            <Image BackgroundColor="CornflowerBlue" x:Name="devil" Grid.Row="6" Grid.Column="6"/>
+            <Image BackgroundColor="#98000e" x:Name="devil" Grid.Row="6" Grid.Column="6"/>
 
-
-            <Image BackgroundColor="#1CB55B" x:Name="violence1" Grid.Row="6" Grid.Column="1"/>
-            <Image BackgroundColor="#1CB55B" x:Name="violence2" Grid.Row="6" Grid.Column="2"/>
+            <Image BackgroundColor="#ff00ff" x:Name="extortion1" Grid.Row="6" Grid.Column="5"/>
+            <Image BackgroundColor="#ff00ff" x:Name="extortion2" Grid.Row="6" Grid.Column="4"/>
             <Image BackgroundColor="#000000" x:Name="betrayal4" Grid.Row="6" Grid.Column="3"/>
-            <Image BackgroundColor="#0076B6" x:Name="extortion1" Grid.Row="6" Grid.Column="4"/>
-            <Image BackgroundColor="#0076B6" x:Name="extortion2" Grid.Row="6" Grid.Column="5"/>
+            <Image BackgroundColor="#dbd148" x:Name="violence1" Grid.Row="6" Grid.Column="2"/>
+            <Image BackgroundColor="#dbd148" x:Name="violence2" Grid.Row="6" Grid.Column="1"/>
 
 
 
@@ -87,7 +86,7 @@
             <Button x:Name="ThrowBtn" Text="Throw dice" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Throw_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
             <Button x:Name="EndTurn" Text="End turn" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_EndTurn_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
             <Button x:Name="BuyField" Text="Buy Field" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_BuyField_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
-            <Button x:Name="FullScreen" Text="FullScreen" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Fullscreen_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
+            <Button x:Name="Settings" Text="Settings" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Settings_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>
         </StackLayout>
     </Grid>
 </ContentPage>

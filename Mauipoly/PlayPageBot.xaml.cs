@@ -18,9 +18,9 @@ public partial class PlayPageBot : ContentPage
         SetFields();
         Whose_Turn(player, bot);
     }
-    private void Btn_Fullscreen_Clicked(object sender, EventArgs e)
+    private void Btn_Settings_Clicked(object sender, EventArgs e)
     {
-        Controls.ToggleFullScreenStatus();
+        Navigation.PushAsync(new SettingsPage());
     }
     private async void Whose_Turn(Player one, Bot two)
     {

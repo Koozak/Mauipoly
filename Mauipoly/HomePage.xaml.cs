@@ -14,7 +14,7 @@ public partial class HomePage : ContentPage
     private void btnPlay_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new ChoosePage());
-        Music.Play();
+        //Music.Play();
     }
     private void btnExit_Clicked(object sender, EventArgs e)
     {
