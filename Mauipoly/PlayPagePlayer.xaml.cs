@@ -70,6 +70,8 @@ public partial class PlayPagePlayer : ContentPage
                     ShowingStats(player1);
                     if (player1.Money - fields[xdplayer1].HowMuchForField < 0)
                     {
+                        while (true == true)
+                        {
                         foreach (var item1 in player1.BoardFieldList)
                         {
                             if(item1 != null)
@@ -87,6 +89,13 @@ public partial class PlayPagePlayer : ContentPage
                                 }
                             }
                         }
+                            bool answer1 = await DisplayAlert("End", "This is all you wanna sell", "Yes", "NO");
+                            if (answer1 == true)
+                            {
+                                break;
+                            }
+                        }
+
                         if (player1.Money - fields[xdplayer1].HowMuchForField < 0)
                         {
                             await DisplayAlert("End Game", "Player 2 won", "OK");
@@ -133,6 +142,8 @@ public partial class PlayPagePlayer : ContentPage
                     
                     if(player2.Money-fields[xdplayer2].HowMuchForField < 0) 
                     {
+                        while(true == true)
+                        {
                         foreach (var item1 in player2.BoardFieldList)
                         {
                             if (item1 != null)
@@ -150,6 +161,13 @@ public partial class PlayPagePlayer : ContentPage
                                 }
                             }
                         }
+                            bool answer1 = await DisplayAlert("End", "That all you want to sell", "Yes", "NO");
+                            if(answer1 == true)
+                            {
+                                break;
+                            }
+                        }
+
                         if (player2.Money - fields[xdplayer2].HowMuchForField < 0)
                         {
                             await DisplayAlert("End Game", "Player 1 won", "OK");
@@ -162,8 +180,8 @@ public partial class PlayPagePlayer : ContentPage
                         }
                         else
                         {
-                            player2.Money -= fields[xdplayer1].HowMuchForField;
-                            player1.Money += fields[xdplayer1].HowMuchForField;
+                            player2.Money -= fields[xdplayer2].HowMuchForField;
+                            player1.Money += fields[xdplayer2].HowMuchForField;
                             ShowingStats(player2);
                         }
                     }
@@ -323,7 +341,7 @@ public partial class PlayPagePlayer : ContentPage
                 bool answer = await DisplayAlert("Question?", "Would you like to buy this field. The cost of this file is " + field[id].HowMuchForField.ToString(), "Yes", "No");
                 if (answer == true)
                 {
-                    if ((player.Money - field[id].HowMuchForField) <= 0)
+                    if ((player.Money - field[id].HowMuchForField) < 0)
                     {
                         await DisplayAlert("Alert!", "You dont have enough", "OK");
                     }

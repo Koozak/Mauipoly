@@ -7,6 +7,16 @@ public partial class PlayPageBot : ContentPage
     Random rnd = new Random();
     Random rnd1 = new Random();
     Random rnd2 = new Random();
+    bool yesp1 = false;
+    bool yesp2 = false;
+    bool yesp3 = false;
+    bool yesp4 = false;
+    int if_won_player = 0;
+    bool yesb1 = false;
+    bool yesb2 = false;
+    bool yesb3 = false;
+    bool yesb4 = false;
+    int if_won_bot = 0;
     public int xdplayer = 0;
     public int xdbot = 0;
     public int global = 0;
@@ -75,13 +85,13 @@ public partial class PlayPageBot : ContentPage
             }
             else
             {
-                PlayerValues.Text += item.Name.ToString() + ",";
+                PlayerValues.Text += item.Name.ToString() + " This field costs " + item.HowMuchForField + System.Environment.NewLine;
             }
 
         }
 
     }
-    private void Btn_Throw_Clicked(object sender, EventArgs e)
+    private async void Btn_Throw_Clicked(object sender, EventArgs e)
     {
         if (player.isTurn == true)
         {
@@ -90,6 +100,70 @@ public partial class PlayPageBot : ContentPage
             ThrowBtn.IsEnabled = false;
             Moving(value);
             ShowingStats(player);
+            foreach (var item in bot.BoardFieldList)
+            {
+                if (item != null && item.Name == fields[xdplayer].Name)
+                {
+                    await DisplayAlert("Enemy Field!", "You step on enemy field that will by cost " + fields[xdplayer].HowMuchForField + " You will have " + (player.Money - fields[xdplayer].HowMuchForField), "OK");
+                    ShowingStats(player);
+                    if (player.Money - fields[xdplayer].HowMuchForField < 0)
+                    {
+                        while (true == true)
+                        {
+                            foreach (var item1 in player.BoardFieldList)
+                            {
+                                if (item1 != null)
+                                {
+                                    bool answer = await DisplayAlert("Selling Fields", "Do you want to sell this field, it will give you " + item1.HowMuchForField + " You are still missing " + Math.Abs(player.Money - fields[xdplayer].HowMuchForField), "Yes", "NO");
+                                    if (answer == true)
+                                    {
+                                        player.Money += item1.HowMuchForField;
+                                        item1.Occupied = false;
+                                        player.BoardFieldList = player.BoardFieldList.Where(val => val != item1).ToArray();
+                                        if (player.Money - fields[xdplayer].HowMuchForField >= 0)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            bool answer1 = await DisplayAlert("End", "This is all you wanna sell", "Yes", "NO");
+                            if (answer1 == true)
+                            {
+                                break;
+                            }
+                        }
+
+                        if (player.Money - fields[xdplayer].HowMuchForField < 0)
+                        {
+                            await DisplayAlert("End Game", "Bot won", "OK");
+                            ThrowBtn.Opacity = 0.5;
+                            ThrowBtn.IsEnabled = false;
+                            EndTurn.Opacity = 0.5;
+                            EndTurn.IsEnabled = false;
+                            BuyField.Opacity = 0.5;
+                            BuyField.IsEnabled = false;
+                        }
+                        else
+                        {
+                            player.Money -= fields[xdplayer].HowMuchForField;
+                            bot.Money += fields[xdplayer].HowMuchForField;
+                            ShowingStats(player);
+                        }
+                    }
+                    else
+                    {
+                        player.Money -= fields[xdplayer].HowMuchForField;
+                        bot.Money += fields[xdplayer].HowMuchForField;
+                        ShowingStats(player);
+                    }
+                    break;
+                }
+                else
+                {
+
+                }
+            }
         }
     }
 
@@ -104,7 +178,7 @@ public partial class PlayPageBot : ContentPage
             int value = rnd1.Next(1, 5) + rnd2.Next(1, 5);
             Moving(value);
             player.isTurn = true;
-            bot.isTurn = false;            
+            bot.isTurn = false;
             ThrowBtn.Opacity = 1;
             ThrowBtn.IsEnabled = true;
             if (xdbot >= 23)
@@ -115,19 +189,162 @@ public partial class PlayPageBot : ContentPage
             {
                 if (fields[xdbot].HowMuchForField != 1000000000)
                 {
-                    if ((bot.Money - fields[xdbot].HowMuchForField) <= 0)
+                    if ((bot.Money - fields[xdbot].HowMuchForField) < 0)
                     {
-                            
+
                     }
                     else
                     {
                         bot.Money = bot.Money - fields[xdbot].HowMuchForField;
                         fields[xdbot].Occupied = true;
                         bot.BoardFieldList[global] = fields[xdbot];
-                        await DisplayAlert("Bot", "Bot bought " + bot.BoardFieldList[global].Name.ToString(),"OK");
+                        await DisplayAlert("Bot", "Bot bought " + bot.BoardFieldList[global].Name.ToString(), "OK");
                         global++;
                     }
                 }
+            }
+            foreach (var item in player.BoardFieldList)
+            {
+                if (item != null && item.Name == fields[xdbot].Name)
+                {
+                    if (bot.Money - fields[xdbot].HowMuchForField < 0)
+                    {
+                        foreach (var item1 in bot.BoardFieldList)
+                        {
+                            if (item1 != null)
+                            {
+                                bot.Money += item1.HowMuchForField;
+                                item1.Occupied = false;
+                                bot.BoardFieldList = bot.BoardFieldList.Where(val => val != item1).ToArray();
+                                if (bot.Money - fields[xdbot].HowMuchForField >= 0)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                        if (bot.Money - fields[xdbot].HowMuchForField < 0)
+                        {
+                            await DisplayAlert("End Game", "Player 1 won", "OK");
+                            ThrowBtn.Opacity = 0.5;
+                            ThrowBtn.IsEnabled = false;
+                            EndTurn.Opacity = 0.5;
+                            EndTurn.IsEnabled = false;
+                            BuyField.Opacity = 0.5;
+                            BuyField.IsEnabled = false;
+                        }
+                        else
+                        {
+                            bot.Money -= fields[xdbot].HowMuchForField;
+                            player.Money += fields[xdbot].HowMuchForField;
+                            await DisplayAlert("Bot step", "Bot step on your field " + item.Name + " You will get " + item.HowMuchForField, "Ok");
+
+                        }
+                    }
+                    else
+                    {
+                        bot.Money -= fields[xdbot].HowMuchForField;
+                        player.Money += fields[xdbot].HowMuchForField;
+                        await DisplayAlert("Bot step", "Bot step on your field "+item.Name+ " You will get "+item.HowMuchForField, "Ok");
+
+                    }
+                    break;
+                }
+                else
+                {
+
+                }
+            }
+        foreach (var field in player.BoardFieldList)
+            {
+                if (field != null && field.Name == "betrayal1")
+                {
+                    if (yesp1 == false)
+                    {
+                        if_won_player++;
+                        yesp1 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal2")
+                {
+                    if (yesp2 == false)
+                    {
+                        if_won_player++;
+                        yesp2 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal3")
+                {
+                    if (yesp3 == false)
+                    {
+                        if_won_player++;
+                        yesp3 = true;
+                    }
+
+                }
+                if (field != null && field.Name == "betrayal4")
+                {
+                    if (yesp4 == false)
+                    {
+                        if_won_player++;
+                        yesp4 = true;
+                    }
+                }
+            }
+            if (if_won_player == 4)
+            {
+                await DisplayAlert("End Game", "Player won", "OK");
+                ThrowBtn.Opacity = 0.5;
+                ThrowBtn.IsEnabled = false;
+                EndTurn.Opacity = 0.5;
+                EndTurn.IsEnabled = false;
+                BuyField.Opacity = 0.5;
+                BuyField.IsEnabled = false;
+            }
+            foreach (var field in bot.BoardFieldList)
+            {
+                if (field != null && field.Name == "betrayal1")
+                {
+                    if (yesb1 == false)
+                    {
+                        if_won_bot++;
+                        yesb1 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal2")
+                {
+                    if (yesb2 == false)
+                    {
+                        if_won_bot++;
+                        yesb2 = true;
+                    }
+                }
+                if (field != null && field.Name == "betrayal3")
+                {
+                    if (yesb3 == false)
+                    {
+                        if_won_bot++;
+                        yesb3 = true;
+                    }
+
+                }
+                if (field != null && field.Name == "betrayal4")
+                {
+                    if (yesb4 == false)
+                    {
+                        if_won_bot++;
+                        yesb4 = true;
+                    }
+                }
+            }
+            if (if_won_bot == 4)
+            {
+                await DisplayAlert("End Game", "Bot won", "OK");
+                ThrowBtn.Opacity = 0.5;
+                ThrowBtn.IsEnabled = false;
+                EndTurn.Opacity = 0.5;
+                EndTurn.IsEnabled = false;
+                BuyField.Opacity = 0.5;
+                BuyField.IsEnabled = false;
             }
         }
     }
@@ -150,7 +367,7 @@ public partial class PlayPageBot : ContentPage
                 bool answer = await DisplayAlert("Question?", "Would you like to buy this field. The cost of this file is " + field[id].HowMuchForField.ToString(), "Yes", "No");
                 if (answer == true)
                 {
-                    if ((player.Money - field[id].HowMuchForField) <= 0)
+                    if ((player.Money - field[id].HowMuchForField) < 0)
                     {
                         await DisplayAlert("Alert!", "You dont have enough", "OK");
                     }
@@ -419,7 +636,7 @@ public partial class PlayPageBot : ContentPage
             {
                 int help1 = xdplayer - 23;
                 xdplayer = 0 + help1;
-                player.Money = player.Money + 200;
+                player.Money = player.Money + 100;
             }
             switch (fields[xdplayer].Name)
             {
@@ -899,7 +1116,7 @@ public partial class PlayPageBot : ContentPage
             {
                 int help1 = xdbot - 23;
                 xdbot = 0 + help1;
-                bot.Money = bot.Money + 200;
+                bot.Money = bot.Money + 100;
             }
             switch (fields[xdbot].Name)
             {

@@ -14,11 +14,15 @@ public partial class HomePage : ContentPage
     private void btnPlay_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new ChoosePage());
-        //Music.Play();
+        Music.Play();
     }
-    private void btnExit_Clicked(object sender, EventArgs e)
+    private async void btnExit_Clicked(object sender, EventArgs e)
     {
-        Application.Current.Quit();
+        bool answer = await DisplayAlert("Game Exit", "Are you sure you wanna exit game ", "Yes", "No");
+        if (answer == true)
+        {
+            Application.Current.Quit();
+        }
     }
     private void btnSettings_Clicked(object sender, EventArgs e)
     {

@@ -1,5 +1,4 @@
 using MauiPageFullScreen;
-using Microsoft.UI.Xaml.Controls;
 
 namespace Mauipoly
 {
