@@ -81,9 +81,9 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Image x:Name="PlayerImage" Source="player1icon.png" Grid.Column="1"/>
-            <StackLayout Grid.Column="0">
+            <ScrollView Grid.Column="0">
                 <Label x:Name="PlayerValues" HorizontalTextAlignment="Center" TextColor="White"></Label>
-            </StackLayout>
+            </ScrollView>
         </Grid>
         <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
             <Button x:Name="ThrowBtn" Text="Throw dice" Margin="10" Padding="10" MaximumWidthRequest="350" MaximumHeightRequest="80" Clicked="Btn_Throw_Clicked" BackgroundColor="#960E02" TextColor="White"></Button>

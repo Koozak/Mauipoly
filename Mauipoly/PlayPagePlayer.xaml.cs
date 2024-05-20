@@ -53,7 +53,7 @@ public partial class PlayPagePlayer : ContentPage
         }
     }
 
-    private void Btn_Throw_Clicked(object sender, EventArgs e)
+    private async void Btn_Throw_Clicked(object sender, EventArgs e)
     {
         if (player1.isTurn == true)
         {
@@ -66,24 +66,50 @@ public partial class PlayPagePlayer : ContentPage
             {
                 if (item != null && item.Name == fields[xdplayer1].Name)
                 {
-                    DisplayAlert("Enemy Field!", "You step on enemy field that will by cost " + fields[xdplayer1].HowMuchForField, "OK");
+                    await DisplayAlert("Enemy Field!", "You step on enemy field that will by cost " + fields[xdplayer1].HowMuchForField + " You will have " + (player1.Money - fields[xdplayer1].HowMuchForField), "OK");
                     ShowingStats(player1);
-                    if (player1.Money - fields[xdplayer1].HowMuchForField <= 0)
+                    if (player1.Money - fields[xdplayer1].HowMuchForField < 0)
                     {
-                        DisplayAlert("End Game", "Player 2 won", "OK");
-                        ThrowBtn.Opacity = 0.5;
-                        ThrowBtn.IsEnabled = false;
-                        EndTurn.Opacity = 0.5;
-                        EndTurn.IsEnabled = false;
-                        BuyField.Opacity = 0.5;
-                        BuyField.IsEnabled = false;
+                        foreach (var item1 in player1.BoardFieldList)
+                        {
+                            if(item1 != null)
+                            {
+                                bool answer = await DisplayAlert("Selling Fields", "Do you want to sell this field, it will give you "+item1.HowMuchForField+ " You are still missing "+Math.Abs(player1.Money - fields[xdplayer1].HowMuchForField), "Yes","NO");
+                                if(answer == true)
+                                {
+                                    player1.Money += item1.HowMuchForField;
+                                    item1.Occupied = false;
+                                    player1.BoardFieldList = player1.BoardFieldList.Where(val => val != item1).ToArray();
+                                    if(player1.Money - fields[xdplayer1].HowMuchForField >= 0)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (player1.Money - fields[xdplayer1].HowMuchForField < 0)
+                        {
+                            await DisplayAlert("End Game", "Player 2 won", "OK");
+                            ThrowBtn.Opacity = 0.5;
+                            ThrowBtn.IsEnabled = false;
+                            EndTurn.Opacity = 0.5;
+                            EndTurn.IsEnabled = false;
+                            BuyField.Opacity = 0.5;
+                            BuyField.IsEnabled = false;
+                        }
+                        else
+                        {
+                            player1.Money -= fields[xdplayer1].HowMuchForField;
+                            player2.Money += fields[xdplayer1].HowMuchForField;
+                            ShowingStats(player1);
+                        }
                     }
                     else
                     {
                         player1.Money -= fields[xdplayer1].HowMuchForField;
                         player2.Money += fields[xdplayer1].HowMuchForField;
+                        ShowingStats(player1);
                     }
-
                     break;
                 }
                 else
@@ -103,22 +129,49 @@ public partial class PlayPagePlayer : ContentPage
             {
                 if (item != null && item.Name == fields[xdplayer2].Name)
                 {
-                    DisplayAlert("Enemy Field!", "You step on enemy field that will by cost " + fields[xdplayer2].HowMuchForField, "OK");
-                    ShowingStats(player2);
-                    if(player2.Money-fields[xdplayer2].HowMuchForField <= 0) 
+                    await DisplayAlert("Enemy Field!", "You step on enemy field that will by cost " + fields[xdplayer2].HowMuchForField + " You will have " + (player2.Money - fields[xdplayer2].HowMuchForField), "OK");
+                    
+                    if(player2.Money-fields[xdplayer2].HowMuchForField < 0) 
                     {
-                        DisplayAlert("End Game", "Player 1 won", "OK");
-                        ThrowBtn.Opacity = 0.5;
-                        ThrowBtn.IsEnabled = false;
-                        EndTurn.Opacity = 0.5;
-                        EndTurn.IsEnabled = false;
-                        BuyField.Opacity = 0.5;
-                        BuyField.IsEnabled = false;
+                        foreach (var item1 in player2.BoardFieldList)
+                        {
+                            if (item1 != null)
+                            {
+                                bool answer = await DisplayAlert("Selling Fields", "Do you want to sell this field, it will give you " + item1.HowMuchForField + " You are still missing " + Math.Abs(player2.Money - fields[xdplayer2].HowMuchForField), "Yes", "NO");
+                                if (answer == true)
+                                {
+                                    player2.Money += item1.HowMuchForField;
+                                    item1.Occupied = false;
+                                    player2.BoardFieldList = player2.BoardFieldList.Where(val => val != item1).ToArray();
+                                    if (player2.Money - fields[xdplayer2].HowMuchForField >= 0)
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (player2.Money - fields[xdplayer2].HowMuchForField < 0)
+                        {
+                            await DisplayAlert("End Game", "Player 1 won", "OK");
+                            ThrowBtn.Opacity = 0.5;
+                            ThrowBtn.IsEnabled = false;
+                            EndTurn.Opacity = 0.5;
+                            EndTurn.IsEnabled = false;
+                            BuyField.Opacity = 0.5;
+                            BuyField.IsEnabled = false;
+                        }
+                        else
+                        {
+                            player2.Money -= fields[xdplayer1].HowMuchForField;
+                            player1.Money += fields[xdplayer1].HowMuchForField;
+                            ShowingStats(player2);
+                        }
                     }
                     else
                     {
                         player2.Money -= fields[xdplayer2].HowMuchForField;
                         player1.Money += fields[xdplayer2].HowMuchForField;
+                        ShowingStats(player2);
                     }
                     break;
                 }
@@ -308,7 +361,7 @@ public partial class PlayPagePlayer : ContentPage
             }
             else
             {
-                PlayerValues.Text += item.Name.ToString()+",";
+                PlayerValues.Text += item.Name.ToString()+ " This field costs "+ item.HowMuchForField +System.Environment.NewLine;
             }
             
         }
@@ -558,7 +611,7 @@ public partial class PlayPagePlayer : ContentPage
             {
                 int help1 = xdplayer1 - 23;
                 xdplayer1 = 0 + help1;
-                player1.Money = player1.Money + 200;
+                player1.Money = player1.Money + 100;
             }
             switch (fields[xdplayer1].Name)
             {
@@ -1038,7 +1091,7 @@ public partial class PlayPagePlayer : ContentPage
             {
                 int help1 = xdplayer2 - 23;
                 xdplayer2 = 0 + help1;
-                player2.Money = player2.Money + 200;
+                player2.Money = player2.Money + 100;
             }
             switch (fields[xdplayer2].Name)
             {

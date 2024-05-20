@@ -9,6 +9,7 @@ public partial class PlayPageBot : ContentPage
     Random rnd2 = new Random();
     public int xdplayer = 0;
     public int xdbot = 0;
+    public int global = 0;
     private BoardField[] fields = new BoardField[24];
     Player player = new Player("Player 1", false, "player1img.png");
     Bot bot = new Bot("Bot 1", false, "botimg.png");
@@ -40,6 +41,24 @@ public partial class PlayPageBot : ContentPage
             bot.isTurn = false;
             player.isTurn = true;
             await Task.Delay(1000);
+            if (fields[xdbot].Occupied == false)
+            {
+                if (fields[xdbot].HowMuchForField != 1000000000)
+                {
+                    if ((bot.Money - fields[xdbot].HowMuchForField) <= 0)
+                    {
+
+                    }
+                    else
+                    {
+                        bot.Money = bot.Money - fields[xdbot].HowMuchForField;
+                        fields[xdbot].Occupied = true;
+                        bot.BoardFieldList[global] = fields[xdbot];
+                        await DisplayAlert("Bot", "Bot bought " + bot.BoardFieldList[global].Name.ToString(), "OK");
+                        global++;
+                    }
+                }
+            }
             ShowingStats(player);
         }
     }
@@ -74,7 +93,7 @@ public partial class PlayPageBot : ContentPage
         }
     }
 
-    private void Btn_EndTurn_Clicked(object sender, EventArgs e)
+    private async void Btn_EndTurn_Clicked(object sender, EventArgs e)
     {
         if (player.isTurn == true)
         {
@@ -88,14 +107,75 @@ public partial class PlayPageBot : ContentPage
             bot.isTurn = false;            
             ThrowBtn.Opacity = 1;
             ThrowBtn.IsEnabled = true;
+            if (xdbot >= 23)
+            {
+                xdbot = 0;
+            }
+            if (fields[xdbot].Occupied == false)
+            {
+                if (fields[xdbot].HowMuchForField != 1000000000)
+                {
+                    if ((bot.Money - fields[xdbot].HowMuchForField) <= 0)
+                    {
+                            
+                    }
+                    else
+                    {
+                        bot.Money = bot.Money - fields[xdbot].HowMuchForField;
+                        fields[xdbot].Occupied = true;
+                        bot.BoardFieldList[global] = fields[xdbot];
+                        await DisplayAlert("Bot", "Bot bought " + bot.BoardFieldList[global].Name.ToString(),"OK");
+                        global++;
+                    }
+                }
+            }
         }
     }
 
     private void Btn_BuyField_Clicked(object sender, EventArgs e)
     {
-
+        buyingFields(fields, player,xdplayer);
     }
-    private void Moving(int r)
+
+    private async void buyingFields(BoardField[] field, Player player, int id)
+    {
+        if (id >= 23)
+        {
+            id = 0;
+        }
+        if (field[id].Occupied == false)
+        {
+            if (field[id].HowMuchForField != 1000000000)
+            {
+                bool answer = await DisplayAlert("Question?", "Would you like to buy this field. The cost of this file is " + field[id].HowMuchForField.ToString(), "Yes", "No");
+                if (answer == true)
+                {
+                    if ((player.Money - field[id].HowMuchForField) <= 0)
+                    {
+                        await DisplayAlert("Alert!", "You dont have enough", "OK");
+                    }
+                    else
+                    {
+                        player.Money = player.Money - field[id].HowMuchForField;
+                        field[id].Occupied = true;
+                        player.BoardFieldList[global] = field[id];
+                        global++;
+                        ShowingStats(player);
+                    }
+                }
+            }
+            else
+            {
+
+            }
+
+        }
+        else
+        {
+            await DisplayAlert("Alert!", "It is occupied by " + player.Nickname, "OK");
+        }
+    }
+        private void Moving(int r)
     {
         if (player.isTurn == true)
         {
