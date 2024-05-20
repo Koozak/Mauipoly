@@ -35,7 +35,7 @@
                     MaximumWidthRequest="450"
                     TextColor="White"
                     BackgroundColor="#960E02"/>
-                <toolkit:MediaElement x:Name="Music" WidthRequest="500" HeightRequest="100" Source="C:\Users\Niko\Downloads\Cacophony%20of%20Despair%20ext%20v1.1.2.2.1.1.2.mp3" ShouldLoopPlayback="True"/>
+                <toolkit:MediaElement x:Name="Music" WidthRequest="500" HeightRequest="100" Source="embed://music.mp3" ShouldLoopPlayback="True"/>
             </StackLayout>
         </ScrollView>
     </Grid>

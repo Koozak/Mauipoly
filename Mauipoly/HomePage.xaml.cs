@@ -10,6 +10,7 @@ public partial class HomePage : ContentPage
 		InitializeComponent();
         Music.IsVisible = false;
         Music.Volume = 0.2;
+        
     }
     private void btnPlay_Clicked(object sender, EventArgs e)
     {
